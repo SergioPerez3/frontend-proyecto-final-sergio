@@ -1,8 +1,12 @@
 function Footer() {
   return (
-    <>
-      <footer></footer>
-    </>
+  
+      <footer>
+        <div>
+            <p>Proyecto final - Web development</p>
+        </div>
+      </footer>
+    
   );
 }
 

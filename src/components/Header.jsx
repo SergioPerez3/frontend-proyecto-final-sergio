@@ -4,12 +4,13 @@ function Header() {
   return (
     <>
       <header>
-        <div>Logo</div>
-        <Natbar/>
+        <div className="header-content container">
+          <div>Logo</div>
+          <Natbar />
+        </div>
       </header>
     </>
   );
 }
-
 
 export default Header;

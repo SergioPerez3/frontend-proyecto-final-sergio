@@ -1,5 +1,10 @@
 function Natbar() {
-  return <nav></nav>;
+  return <nav>
+    <a href="#">Inicio</a>
+    <a href="#">Descubre</a>
+    <a href="#">Productos</a>
+    <a href="#">Admin</a>
+  </nav>;
 }
 
 export default Natbar;
