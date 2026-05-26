@@ -1,14 +1,10 @@
 export const categories = [
-  "Hogar",
-  "Ropa",
-  "Informática",
-  "Electrónica",
-  "Deportes",
-  "Motor",
-  "Juguetes",
-  "Belleza",
-  "Mascotas",
-  "Coleccionismo",
-  "Libros",
-  "Otros"
+  "Tecnología y electrónica",
+  "Moda y accesorios",
+  "Deporte y ocio",
+  "Hogar y jardín",
+  "Mobiliario y decoración",
+  "Libros, música y películas",
+  "Herramientas y bricolaje",
+  "Otros",
 ];

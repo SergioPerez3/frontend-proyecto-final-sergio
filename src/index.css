@@ -6,15 +6,21 @@
   box-sizing: border-box;
 }
 
+
+
 body {
+  
   margin: 0;
   font-family: "Poppins", sans-serif;
+
   background:
-    radial-gradient(circle at 20% 80%, #c5a10033 0%, transparent 55%),
-    radial-gradient(circle at 80% 20%, #c5a10033 0%, transparent 55%),
-    radial-gradient(circle at 50% 50%, #c5a10022 0%, transparent 70%),
-    #0a0a0a;
-  color: #f5f5f5;
+    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)),
+    url("/images/background.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 
@@ -39,7 +45,7 @@ a:hover {
 
 
 img {
-  width: 100%;
+  max-width: 100%;
   display: block;
   object-fit: cover;
 }
@@ -61,7 +67,7 @@ img {
 
 
 .site-header {
-  background-color: #0d0d0d;
+  background-color: #ffffff;
   border-bottom: 1px solid #1a1a1a;
 }
 
@@ -150,10 +156,11 @@ img {
 
 .product-card {
   width: 100%;
-  background-color: #111;
+  background-color: #191400bd;
+
   border-radius: 12px;
   overflow: hidden;
-  border: 1px solid #222;
+  border: 2px solid #222;
   transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
@@ -186,6 +193,109 @@ img {
   color: #c5a100;
   font-weight: bold;
 }
+
+.catalog-section,
+.new-movies-section {
+  padding: 40px 0 80px;
+}
+
+.section-header {
+  margin-bottom: 24px;
+}
+
+.section-header h2 {
+  margin: 0 0 8px;
+}
+
+.section-header p {
+  margin: 0;
+  color: #d1d5db;
+}
+.search-input {
+  width: 100%;
+  padding: 12px 16px 12px 40px; 
+  border: 1px solid #444; 
+  border-radius: 8px;
+  background-color: #0d0d0d; 
+  background-image: url('https://cdn-icons-png.flaticon.com/512/149/149852.png');
+  background-size: 18px;
+  background-position: 12px center;
+  background-repeat: no-repeat;
+  color: #f9f3e6; 
+  font-size: 16px;
+  transition: all 0.25s ease;
+}
+
+.search-input::placeholder {
+  color: #d4c9b5; 
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #d4af37; 
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.6); 
+}
+
+.empty-message {
+  padding: 20px;
+  border: 1px solid rgba(212, 175, 55, 0.35); 
+  border-radius: 10px;
+  background-color: #151515; 
+  color: #e8e0c9;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  margin-top: 20px;
+  opacity: 0.9; 
+}
+
+
+.category-select {
+  padding: 10px 14px;
+  background: #0a0a0a;
+  color: #f5f5f5;
+  border: 1px solid #333;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.2s ease;
+  outline: none;
+}
+
+/* Hover */
+.category-select:hover {
+  border-color: #c5a100;
+}
+
+/* Focus */
+.category-select:focus {
+  border-color: #c5a100;
+  box-shadow: 0 0 6px #c5a10055;
+}
+
+/* Opciones del menú */
+.category-select option {
+  background: #0a0a0a;
+  color: #f5f5f5;
+}
+
+
+
+.filter-price {
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #333;
+  background: #0a0a0a;
+  color: #fff;
+  outline: none;
+  transition: 0.2s;
+}
+
+.filter-price:focus {
+  border-color: #c5a100;
+}
+
+
 
 /* MEDIA QUERIES */
 
