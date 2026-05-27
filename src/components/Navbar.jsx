@@ -10,8 +10,9 @@ function Navbar() {
 
       <div className="navbar-left">
         <a href="#">Home</a>
-        <a href="#">Mis Productos</a>
         <a href="#">Favoritos</a>
+        <a href="#">Mis Productos</a>
+        <a href="#">Perfil</a>
       </div>
 
       <div className="navbar-right">

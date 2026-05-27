@@ -18,16 +18,40 @@ function Home() {
 
       const matchesCategory =
         selectedCategory == "Todos" || product.category === selectedCategory;
+
       return matchesSearch && matchesCategory;
     });
   }
-  const sortProducts = [...filteredProducts];
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    if (sortBy == "az") {
+      if (a.title < b.title) return -1;
+      if (a.title > b.title) return 1;
+      return 0;
+    }
 
-  const hasResults = filteredProducts.length > 0;
+    if (sortBy === "newest") {
+      return b.createdAt - a.createdAt;
+    }
 
+    if (sortBy === "oldest") {
+      return a.createdAt - b.createdAt;
+    }
+  });
+
+  if (sortBy === "low") {
+    filteredProducts = filteredProducts.sort((a, b) => a.price - b.price);
+  }
+
+  if (sortBy === "high") {
+    filteredProducts = filteredProducts.sort((a, b) => b.price - a.price);
+  }
+
+  
   const featuredProducts = products.filter((product) => product.featured);
 
   const newProducts = products.slice(0, 3); // 3 primeros
+
+  const hasResults = filteredProducts.length > 0;
 
   const categories = [
     "Todos",
@@ -40,16 +64,27 @@ function Home() {
         <div className="container">
           <img
             src="/images/logoEncabezado.png"
-            alt="Imagen de encabezado WebeW"
+            alt="Logo Tradeon"
+            className="hero-logo"
           />
 
-          <span className="hero-label">El lugar donde tus productos encuentran nuevo dueño</span>
-          <h1> Compra y vende de forma rápida, segura y sin complicaciones.Encuentra de todo y da una segunda vida a tus productos.</h1>
-          <p>
-           
+          <span className="hero-label">
+            ...El lugar donde tus productos encuentran un nuevo dueño...
+          </span>
+
+          <h1 className="hero-title">
+            Compra y vende de forma rápida, segura y sin complicaciones.
+          </h1>
+
+          <p className="hero-description">
+            Encuentra de todo y da una segunda vida a tus productos.
           </p>
+
           <a className="button" href="#">
             Ver productos
+          </a>
+          <a className="button" href="#">
+            Vende ahora
           </a>
         </div>
       </section>
@@ -78,10 +113,24 @@ function Home() {
               </option>
             ))}
           </select>
-          <select className="filter-price">
+          <select
+            className="filter-price"
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value)}
+          >
             <option value="">Precio</option>
             <option value="low">Menor a mayor</option>
             <option value="high">Mayor a menor</option>
+          </select>
+          <select
+            className="filter-price"
+            value={sortBy}
+            onChange={(event) => setSortBy(event.target.value)}
+          >
+            <option value="default">Orden por defecto</option>
+            <option value="az">A-Z</option>
+            <option value="newest">Más nuevo</option>
+            <option value="oldest">Más viejo</option>
           </select>
 
           {search && !hasResults && (
@@ -89,31 +138,21 @@ function Home() {
               No encontramos resultados para "{search}"
             </p>
           )}
-          {hasResults && <ProductList products={filteredProducts} />}
-          <select
-            className="filter-select"
-            value={sortBy}
-            onchange={(event) => setSortBy(event.target.value)}
-          >
-            <option value="default">Orden por defecto</option>
-            <option value="az">A-Z</option>
-            <option value="newest">Más nuevo</option>
-            <option value="oldest">Más viejo</option>
-          </select>
+          {hasResults && <ProductList products={sortedProducts} />}
         </div>
       </section>
 
       <section className="featured-section">
         <div className="container">
-          <h2>Contenido destacado</h2>
+          <h2>· Productos destacados ·</h2>
 
           <ProductList products={featuredProducts} />
         </div>
       </section>
 
-      <section className="new-products-section">
+      <section className="featured-section">
         <div className="container">
-          <h2>Nuevos productos</h2>
+          <h2>· Nuevos productos ·</h2>
 
           <ProductList products={newProducts} />
         </div>

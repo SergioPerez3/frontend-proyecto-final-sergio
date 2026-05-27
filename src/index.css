@@ -11,7 +11,7 @@
 body {
   
   margin: 0;
-  font-family: "Poppins", sans-serif;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
   background:
     linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)),
@@ -67,7 +67,7 @@ img {
 
 
 .site-header {
-  background-color: #ffffff;
+  background-color: #130b01;
   border-bottom: 1px solid #1a1a1a;
 }
 
@@ -94,40 +94,59 @@ img {
 
 
 
-
-
 .hero {
-  padding: 5rem 0;
+  text-align: center;
+  padding: 90px 20px 90px;
+  color: #f5f5f5;
+}
+
+.hero-logo {
+  width: 800px;     
+  height: auto;
+  display: block;
+  margin: 0 auto 25px;  
+  filter: drop-shadow(0 0 20px rgba(197,161,0,0.4));
+  border-radius: 33px; 
 }
 
 .hero-label {
-  display: inline-block;
-  margin-bottom: 1rem;
-  color: #c5a100;
-  font-weight: bold;
+  display: block;
+  font-size: 18px;
+  color: #cab03b;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
 }
 
-.hero p {
+.hero-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-description {
+  font-size: 18px;
+  opacity: 0.85;
   max-width: 600px;
-  color: #d1d5db;
-  line-height: 1.6;
+  margin: 0 auto 25px;
 }
 
 .button {
   display: inline-block;
-  margin-top: 1rem;
-  padding: 0.8rem 1.2rem;
-  background-color: #c5a100;
-  border-radius: 0.5rem;
-  font-weight: bold;
+  padding: 12px 24px;
+  background: #c5a100;
   color: #0d0d0d;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
   transition: 0.2s ease;
 }
 
 .button:hover {
-  background-color: #e6c200;
+  background: #e0b800;
 }
-
 
 
 
@@ -154,15 +173,17 @@ img {
   gap: 24px;
 }
 
+
 .product-card {
   width: 100%;
-  background-color: #191400bd;
+  background-color: #0c0a01d4;
 
   border-radius: 12px;
   overflow: hidden;
   border: 2px solid #222;
   transition: transform 0.2s ease, border-color 0.2s ease;
 }
+
 
 .product-card:hover {
   transform: translateY(-5px);
@@ -180,7 +201,8 @@ img {
 }
 
 .product-card h3 {
-  margin: 0 0 8px;
+  text-align: center;
+  margin: 12px 2px 4px;
   color: #fff;
 }
 
@@ -193,10 +215,27 @@ img {
   color: #c5a100;
   font-weight: bold;
 }
+.product-card .price {
+  font-size: 20px;
+  font-weight: bold;
+  color: #c5a100;
+  margin: 10px 0;
+  text-align: center;   /* CENTRADO */
+  display: block;
+}
+
 
 .catalog-section,
 .new-movies-section {
-  padding: 40px 0 80px;
+  padding: 50px 0 80px;
+}
+
+.catalog-section .container {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid #c5a10055;
+  border-radius: 12px;
+  padding: 25px;
+  backdrop-filter: blur(6px);
 }
 
 .section-header {
@@ -249,6 +288,29 @@ img {
   opacity: 0.9; 
 }
 
+.featured-section .container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+.featured-section h2 {
+  width: 100%;
+  display: block;
+
+  text-align: center;
+  font-size: 28px;
+  color: #c5a100;
+  background: rgba(5, 4, 0, 0.638);
+  padding: 14px 0;
+  border-radius: 10px;
+  border: 1px solid #c5a1006b;
+  margin-bottom: 35px;
+  backdrop-filter: blur(4px);
+}
+
 
 .category-select {
   padding: 10px 14px;
@@ -293,6 +355,48 @@ img {
 
 .filter-price:focus {
   border-color: #c5a100;
+}
+
+/* CONTENEDOR DE BOTONES */
+.card-buttons {
+  display: flex;
+  justify-content: center;   /* CENTRADO */
+  gap: 12px;                 /* SEPARACIÓN ENTRE BOTONES */
+  padding: 10px 0;
+  margin-top: 10px;
+}
+
+/* BOTÓN DE FAVORITOS */
+.fav-btn {
+  background: rgba(197, 161, 0, 0.15);
+  border: 1px solid #c5a10055;
+  color: #c5a100;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: 0.2s ease;
+}
+
+.fav-btn:hover {
+  background: rgba(197, 161, 0, 0.35);
+  border-color: #c5a100;
+}
+
+/* BOTÓN AÑADIR AL CARRITO */
+.add-btn {
+  background: #c5a100;
+  border: none;
+  color: #0d0d0d;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.add-btn:hover {
+  background: #e0b800;
 }
 
 
