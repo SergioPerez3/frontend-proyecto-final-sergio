@@ -36,15 +36,17 @@ function Home() {
     if (sortBy === "oldest") {
       return a.createdAt - b.createdAt;
     }
+
+     if (sortBy === "low") {
+    return  a.price - b.price;
+    }
+
+    if (sortBy === "high") {
+    return b.price - a.price;
+  }
   });
 
-  if (sortBy === "low") {
-    filteredProducts = filteredProducts.sort((a, b) => a.price - b.price);
-  }
-
-  if (sortBy === "high") {
-    filteredProducts = filteredProducts.sort((a, b) => b.price - a.price);
-  }
+ 
 
   
   const featuredProducts = products.filter((product) => product.featured);
