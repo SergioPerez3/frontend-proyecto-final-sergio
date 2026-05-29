@@ -4,16 +4,16 @@ import { Link } from "react-router-dom";
 import "../index.css";
 
 function Home() {
-
-
-  const modaProducts = products.filter((product) => product.category.startsWith("Moda"));
-  const sportProducts = products.filter((product) => product.category.startsWith("Deporte"));
+  const modaProducts = products.filter((product) =>
+    product.category.startsWith("Moda"),
+  );
+  const sportProducts = products.filter((product) =>
+    product.category.startsWith("Deporte"),
+  );
 
   const featuredProducts = products.filter((product) => product.featured);
 
   const newProducts = products.slice(0, 3); // 3 primeros
-
-
 
   return (
     <main>
@@ -37,15 +37,31 @@ function Home() {
             Encuentra de todo y da una segunda vida a tus productos.
           </p>
 
-          <Link to="/products" className="button">
-            Ver todos los productos
-          </Link>
-          <Link to="/sell" className="button">
-            Vende ahora +
-          </Link>
+          <div className="hero-buttons">
+            <div className="hero-button-container">
+              <img
+                src="/images/iconoTodoslosproductos.png"
+                alt="Todos los productos"
+                className="hero-icon"
+              />
+              <Link to="/products" className="button">
+                Ver todos los productos
+              </Link>
+            </div>
+
+            <div className="hero-button-container">
+              <img
+                src="/images/iconoSubirproducto.png"
+                alt="Subir productos"
+                className="hero-icon"
+              />
+              <Link to="/sell" className="button">
+                Vende ahora +
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
-
 
       <section className="featured-section">
         <div className="container">
@@ -63,7 +79,7 @@ function Home() {
         </div>
       </section>
 
-        <section className="featured-section">
+      <section className="featured-section">
         <div className="container">
           <h2> Únete a la moda :</h2>
 
@@ -71,15 +87,13 @@ function Home() {
         </div>
       </section>
 
-        <section className="featured-section">
+      <section className="featured-section">
         <div className="container">
           <h2> Haz deporte este verano :</h2>
 
           <ProductList products={sportProducts} />
         </div>
       </section>
-
-
     </main>
   );
 }

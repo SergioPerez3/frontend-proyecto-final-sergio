@@ -4,7 +4,7 @@ import { products } from "../../data/products";
 function AdminProductPage() {
   return (
     <section className="catalog-section">
-      <h2>Administracion de productos</h2>
+      <h2>Gestión de productos</h2>
 
       <p>Próximamente podremos crear, editar y eliminar productos.</p>
       <nav>

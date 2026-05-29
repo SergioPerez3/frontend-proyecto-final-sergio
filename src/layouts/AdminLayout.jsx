@@ -17,10 +17,10 @@ function AdminLayout() {
                 <Link to="/admin/products">Ver mis productos</Link>
                 </button>
                 <button>
-                <Link to="/admin/products">Añadir producto</Link>
+                <Link to="/admin/products">+ Añadir producto</Link>
                 </button>
 
-                <Link to= "/">Volver a la web</Link>
+                <Link to= "/">↩</Link>
             </nav>
             <Outlet/> 
             </div>

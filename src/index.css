@@ -66,7 +66,7 @@ img {
 
 .hero {
   text-align: center;
-  padding: 90px 20px 90px;
+  padding: 10px 20px 90px;
   color: #f5f5f5;
 }
 
@@ -106,8 +106,8 @@ img {
 .button {
   display: inline-block;
   padding: 12px 24px;
-  background: #c5a100;
-  color: #0d0d0d;
+  background: #ada373;
+  color: #312501;
   border-radius: 6px;
   font-weight: 600;
   text-decoration: none;
@@ -120,6 +120,8 @@ img {
 
 .site-footer {
   padding: 2rem 0;
+  background-color: #130b01;
+  text-align: center;
   border-top: 1px solid #1f2937;
   color: #9ca3af;
   font-size: 0.8rem;
@@ -132,7 +134,7 @@ img {
 .product-list {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
 }
 
 .product-card {
@@ -188,7 +190,7 @@ img {
 
 .catalog-section,
 .new-movies-section {
-  padding: 50px 0 80px;
+  padding: 20px 0 20px;
 }
 
 .catalog-section .container {
@@ -307,6 +309,7 @@ img {
   color: #fff;
   outline: none;
   transition: 0.2s;
+  cursor: pointer;
 }
 
 .filter-price:focus {
@@ -540,6 +543,35 @@ img {
   object-fit: cover;
   border-radius: 8px;
   display: block;
+}
+.product-page-h2 {
+  font-size: 22px;
+  color: #c5a100;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 30px;
+}
+
+.hero-button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.hero-icon {
+  width: 220px;
+  height: 110px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 5px rgba(197, 161, 0, 0.4));
 }
 
 /* MEDIA QUERIES */

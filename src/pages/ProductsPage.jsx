@@ -59,9 +59,11 @@ function ProductsPage() {
     <main>
       <section className="catalog-section">
         <div className="container">
+          <h2 className="product-page-h2">
+          Explora todos los productos</h2>
           <input
             className="search-input"
-            type="text"
+            type="search"
             placeholder="Buscar productos..."
             name="search"
             id="search"
@@ -113,7 +115,7 @@ function ProductsPage() {
       
       <section className="featured-section">
         <div className="container">
-          <h2>Todos los productos :</h2>
+          
 
           <ProductList products={allProducts} />
         </div>
