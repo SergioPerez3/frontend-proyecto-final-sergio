@@ -19,7 +19,6 @@ function AdminLayout() {
                 <button>
                 <Link to="/admin/products">+ Añadir producto</Link>
                 </button>
-
                 <Link to= "/">↩</Link>
             </nav>
             <Outlet/> 

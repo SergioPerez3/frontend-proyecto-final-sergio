@@ -20,8 +20,8 @@ function Home() {
       <section className="hero">
         <div className="container">
           <img
-            src="/images/logoEncabezado.png"
-            alt="Logo Tradeon"
+            src="/images/logo3.png"
+            alt="Logo WebeW"
             className="hero-logo"
           />
 
@@ -39,23 +39,29 @@ function Home() {
 
           <div className="hero-buttons">
             <div className="hero-button-container">
+              <Link to="/products">
               <img
                 src="/images/iconoTodoslosproductos.png"
                 alt="Todos los productos"
                 className="hero-icon"
               />
+              </Link> 
               <Link to="/products" className="button">
                 Ver todos los productos
-              </Link>
+              </Link> 
             </div>
 
             <div className="hero-button-container">
+              
+              <Link to="/admin">
               <img
+
                 src="/images/iconoSubirproducto.png"
                 alt="Subir productos"
                 className="hero-icon"
               />
-              <Link to="/sell" className="button">
+              </Link>
+              <Link to="/admin" className="button">
                 Vende ahora +
               </Link>
             </div>

@@ -5,6 +5,8 @@ import Home from "../pages/Home";
 import ProductsPage from "../pages/ProductsPage";
 import ProductDetailPage from "../pages/ProductDetailPage";
 import NotfoundPage from "../pages/NotFoundPage";
+import AboutUs from "../pages/AboutUs";
+import ContactUs from "../pages/ContactUs";
 
 import AdminLayout from "../layouts/AdminLayout";
 import AdminProductPage from "../pages/admin/AdminProductPage";
@@ -27,6 +29,14 @@ export const router = createBrowserRouter([
       {
         path: "products/:id",
         element: <ProductDetailPage />,
+      },
+      {
+        path: "about",
+        element: <AboutUs />,
+      },
+      {
+        path: "contact",
+        element: <ContactUs />,
       },
       {
         path: "*",
