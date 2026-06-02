@@ -12,6 +12,7 @@ import AdminLayout from "../layouts/AdminLayout";
 import AdminProductPage from "../pages/admin/AdminProductPage";
 import DashboardPage from "../pages/admin/DaskboardPage";
 
+
 export const router = createBrowserRouter([
   // RUTA PUBLICA
   {
@@ -59,6 +60,7 @@ export const router = createBrowserRouter([
         path: "products",
         element: <AdminProductPage />,
       },
+    
     ],
   },
 ]);

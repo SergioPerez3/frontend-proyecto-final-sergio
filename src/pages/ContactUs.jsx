@@ -19,12 +19,6 @@ function ContactUs() {
           <strong>Dirección:</strong> Calle del Comercio 27, Madrid (ficticio)
         </p>
       </div>
-      <form className="contact-form">
-          <input type="text" placeholder="Tu nombre" required />
-          <input type="email" placeholder="Tu email" required />
-          <textarea placeholder="Tu mensaje" rows="5" required></textarea>
-          <button type="submit">Enviar</button>
-        </form>
         </div>
     </section>
   );

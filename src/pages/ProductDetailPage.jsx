@@ -37,11 +37,11 @@ function ProductDetailPage() {
 
           <p className="detail-price">{product.price} €</p>
 
-          <p className="detail-description">Descripción: {product.description}</p>
+          <p className="detail-description"><strong>Descripción: </strong>{product.description}</p>
           
-          <p className="detail-notes">Observaciones: {product.notes}</p>
+          <p className="detail-notes"><strong>Observaciones: </strong>{product.notes}</p>
 
-          <p className="detail-description">Vendedor: {product.seller}</p>
+          <p className="detail-description"><strong>Vendedor: </strong>{product.seller}</p>
           
           <div className="detail-buttons">
             <button className="fav-btn">❤ Favorito</button>

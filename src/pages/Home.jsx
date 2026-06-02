@@ -1,5 +1,5 @@
 import { products } from "../data/products";
-import ProductList from "../components/ProductList.jsx";
+import ProductCarousel from "../components/ProductCarousel.jsx";
 import { Link } from "react-router-dom";
 import "../index.css";
 
@@ -73,15 +73,22 @@ function Home() {
         <div className="container">
           <h2> Los mas destacados esta semana : </h2>
 
-          <ProductList products={featuredProducts} />
+          <ProductCarousel products={featuredProducts} visible={3} />
         </div>
       </section>
+      {/* <section className="featured-section">
+        <div className="container">
+          <h2> Los mas destacados esta semana : </h2>
+
+          <ProductList products={featuredProducts} />
+        </div>
+      </section> */}
 
       <section className="featured-section">
         <div className="container">
           <h2> Los mas nuevos :</h2>
 
-          <ProductList products={newProducts} />
+          <ProductCarousel products={newProducts} visible={3} />
         </div>
       </section>
 
@@ -89,7 +96,7 @@ function Home() {
         <div className="container">
           <h2> Únete a la moda :</h2>
 
-          <ProductList products={modaProducts} />
+          <ProductCarousel products={modaProducts} visible={3} />
         </div>
       </section>
 
@@ -97,10 +104,11 @@ function Home() {
         <div className="container">
           <h2> Haz deporte este verano :</h2>
 
-          <ProductList products={sportProducts} />
+          <ProductCarousel products={sportProducts} visible={3} />
         </div>
       </section>
     </main>
+
   );
 }
 
