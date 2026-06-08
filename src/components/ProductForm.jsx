@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { categories } from "../data/categories";
 
 
@@ -8,15 +8,17 @@ const initialForm = {
   price: "",
   category: "",
   image: "",
-  notes: "",
   featured:false,
 };
 
-function ProductForm(onAddProduct) {
+function ProductForm(onAddProduct, product, onUpdateProduct) {
   const [form, setForm] = useState(initialForm);
+
+  const isEditing = Boolean(product);
 
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
+
     setForm({
       ...form,
       [name]: type === "checkbox" ? checked : value,
@@ -28,20 +30,58 @@ function ProductForm(onAddProduct) {
   const handleSubmit = (event) => {
     event.preventDefault();
   
+    if (!form.name.trim()) {
+      alert("Ingrese el nombre del producto");
+      return;
+    }
 
-  if (!form.name || !form.price) {
-    alert("Por favor completa los campos obligatorios");
-    return;
+    if (!form.description.trim()) {
+      alert("Ingrese una descripción");
+      return;
+    }
+
+  
+    // if (!form.category) {
+    //   alert("Seleccione una categoría");
+    //   return;
+    // }
+
+    // if (!form.image.trim()) {
+    //   alert("Ingrese una imagen");
+    //   return;
+    // }
+
+    if (!form.price || isNaN(form.price) || Number(form.price) < 0) {
+      alert("Ingrese un precio válido");
+      return;
+    }
+
+  if (isEditing) {
+    onUpdateProduct(product.id, form)
+  } else {
+    onAddProduct(form);
   }
-
-
-  onAddProduct(form);
-
+  
   setForm(initialForm);
 };
+
+
+
+useEffect(() => {
+  if (product) {
+    setForm({
+      ...initialForm,
+      ...product,
+    });
+  }
+}, [product]);
+
+
+
   return (
     <form onSubmit={handleSubmit} className="product-form">
-      <h2>Nuevo producto</h2>
+      <h2>{isEditing ? "Editar producto" : "Nuevo producto"}</h2>
+
       <div className="form-group">
         <label htmlFor="name">Nombre:</label>
         <input
@@ -81,7 +121,7 @@ function ProductForm(onAddProduct) {
       </div>
 
       <div>
-        <label htmlFor="categories">Categoría:</label>
+        <label htmlFor="category">Categoría:</label>
         <select
           id="category"
           name="category"
@@ -89,9 +129,9 @@ function ProductForm(onAddProduct) {
           onChange={handleChange}
         >
           <option value="">Selecciona una categoría</option>
-          {categories.map((cat) => (
-            <option key={cat} value={cat.id}>
-              {cat.name}
+          {categories.map((category) => (
+            <option key={category.id} value={category.name}>
+              {category.name}
             </option>
           ))}
         </select>
@@ -143,7 +183,7 @@ function ProductForm(onAddProduct) {
         </div>
       )}
 
-      <div>
+      {/* <div>
         <label htmlFor="notes">Notas:</label>
         <textarea
           type="text"
@@ -153,7 +193,7 @@ function ProductForm(onAddProduct) {
           value={form.notes}
           onChange={handleChange}
         />
-      </div>
+      </div> */}
 
       <div>
         <label htmlFor="featured">Destacado:</label>
@@ -166,7 +206,7 @@ function ProductForm(onAddProduct) {
         />
       </div>
 
-      <button type="submit">Agregar producto</button>
+      <button type="submit">{isEditing ? "Actualizar producto" : "Agregar producto"}</button>
     </form>
   );
 }

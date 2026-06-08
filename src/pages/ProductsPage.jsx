@@ -1,12 +1,31 @@
-import { products } from "../data/products";
 import ProductList from "../components/ProductList.jsx";
-import { useState } from "react";
-import "../index.css" ;
+import { useState, useEffect } from "react";
+import { getProducts } from "../services/productService.js";
+import "../index.css";
+
 
 function ProductsPage() {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Todos");
   const [sortBy, setSortBy] = useState("default");
+
+  useEffect(() => {
+    const loadProducts = async () => {
+      try {
+        const data = await getProducts();
+        setProducts(data)
+      } catch {
+        setError("No se pudieron obtener los productos")
+      } finally {
+        setLoading(false)
+      }
+    }
+    loadProducts();
+  },[])
 
   let filteredProducts = [];
 
@@ -55,12 +74,19 @@ function ProductsPage() {
 
   const allProducts = products;
 
+  if(loading) {
+    return <p className="empty-message">Cargando productos...</p>
+  }
+
+  if(error) {
+    return <p className="empty-message">{error}</p>
+  }
+
   return (
     <main>
       <section className="catalog-section">
         <div className="container">
-          <h2 className="product-page-h2">
-          Explora todos los productos</h2>
+          <h2 className="product-page-h2">Explora todos los productos</h2>
           <input
             className="search-input"
             type="search"
@@ -112,16 +138,11 @@ function ProductsPage() {
         </div>
       </section>
 
-      
       <section className="featured-section">
         <div className="container">
-          
-
           <ProductList products={allProducts} />
         </div>
       </section>
-
-
     </main>
   );
 }

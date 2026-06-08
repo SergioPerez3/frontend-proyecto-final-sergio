@@ -6,9 +6,7 @@ export const products = [
     price: 450,
     category: "Moda y accesorios",
     image: "https://picsum.photos/300/200?random=1",
-    seller: "usuario1",
     featured: false,
-    notes: "Usado solo una temporada, en excelente estado.",
     createdAt: "2024-01-10",
   },
   {
@@ -18,9 +16,7 @@ export const products = [
     price: 1200,
     category: "Moda y accesorios",
     image: "https://picsum.photos/300/200?random=2",
-    seller: "usuario2",
     featured: true,
-    notes: "Batería de larga duración.",
     createdAt: "2024-02-01",
   },
   {
@@ -30,9 +26,7 @@ export const products = [
     price: 180,
     category: "Tecnología y electrónica",
     image: "https://picsum.photos/300/200?random=3",
-    seller: "usuario3",
     featured: true,
-    notes: "Batería de larga duración.",
     createdAt: "2024-03-12",
   },
   {
@@ -42,9 +36,7 @@ export const products = [
     price: 650,
     category: "Tecnología y electrónica",
     image: "https://picsum.photos/300/200?random=4",
-    seller: "usuario4",
     featured: true,
-    notes: "Batería de larga duración.",
     createdAt: "2024-01-25",
   },
   {
@@ -54,9 +46,7 @@ export const products = [
     price: 95,
     category: "Moda y accesorios",
     image: "https://picsum.photos/300/200?random=5",
-    seller: "usuario5",
     featured: true,
-    notes: "Talla M, usada solo una temporada.",
     createdAt: "2024-02-20",
   },
     {
@@ -66,9 +56,7 @@ export const products = [
     price: 220,
     category: "Tecnología y electrónica",
     image: "https://picsum.photos/300/200?random=6",
-    seller: "usuario6",
     featured: false,
-    notes: "Batería de larga duración.",
     createdAt: "2024-03-01",
   },
   {
@@ -78,9 +66,7 @@ export const products = [
     price: 85,
     category: "Moda y accesorios",
     image: "https://picsum.photos/300/200?random=7",
-    seller: "usuario7",
     featured: true,
-    notes: "Talla M, usada solo una temporada.",
     createdAt: "2024-02-15",
   },
   {
@@ -90,9 +76,7 @@ export const products = [
     price: 350,
     category: "Deporte y ocio",
     image: "https://picsum.photos/300/200?random=8",
-    seller: "usuario8",
     featured: false,
-    notes: "Bicicleta en excelente estado, poco uso.",
     createdAt: "2024-01-30",
   },
   {
@@ -102,9 +86,7 @@ export const products = [
     price: 260,
     category: "Hogar y jardín",
     image: "https://picsum.photos/300/200?random=9",
-    seller: "usuario9",
     featured: true,
-    notes: "Aspiradora en perfecto estado, poco uso.",
     createdAt: "2024-03-05",
   },
   {
@@ -114,9 +96,7 @@ export const products = [
     price: 120,
     category: "Mobiliario y decoración",
     image: "https://picsum.photos/300/200?random=10",
-    seller: "usuario10",
     featured: false,
-    notes: "Mesa en excelente estado, poco uso.",
     createdAt: "2024-02-28",
   },
   {
@@ -126,9 +106,7 @@ export const products = [
     price: 75,
     category: "Libros, música y películas",
     image: "https://picsum.photos/300/200?random=11",
-    seller: "usuario11",
     featured: true,
-    notes: "Colección completa, en perfecto estado.",
     createdAt: "2024-01-18",
   },
   {
@@ -138,9 +116,7 @@ export const products = [
     price: 95,
     category: "Herramientas y bricolaje",
     image: "https://picsum.photos/300/200?random=12",
-    seller: "usuario12",
     featured: false,
-    notes: "Herramienta en excelente estado, poco uso.",
     createdAt: "2024-03-10",
   },
   {
@@ -150,9 +126,7 @@ export const products = [
     price: 40,
     category: "Otros",
     image: "https://picsum.photos/300/200?random=13",
-    seller: "usuario13",
     featured: true,
-    notes: "Set de figuras coleccionables en perfecto estado.",
     createdAt: "2024-02-22",
   },
 ];

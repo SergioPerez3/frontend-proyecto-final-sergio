@@ -25,7 +25,7 @@ function ProductCarousel({ products, visible = 3 }) {
       </button>
       <div className="product-list">
         {visibleProducts.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard key={product._id} product={product} />
         ))}
       </div>
       <button className="arrow-btn right" onClick={next}>

@@ -1,18 +1,44 @@
 import { Link, useParams } from "react-router-dom";
-import { products } from "../data/products";
+import { getProductById } from "../services/productService";
+import { useEffect, useState } from "react";
 
 function ProductDetailPage() {
   const { id } = useParams();
 
-  const product = products.find((p) => p.id == id);
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const loadProduct = async () => {
+      try {
+        const data = await getProductById(id)
+        setProduct(data)
+      } catch {
+        setError("Producto no encontrado")
+      } finally {
+        setLoading(false)
+      }
+    };
+    loadProduct();
+  }, [id]);
+
+  if (loading) {
+    return <p className="empty-message">Cargando productos...</p>
+  }
+  if(error) {
+    <p className="empty-message">{error}</p>
+  }
 
   if (!product) {
     return (
       <main>
         <section className="catalog-section">
           <div className="container">
-            <h1 className="detail-price" >Producto no encontrado</h1>
-            <Link to="/" className="detail-title">Pulse para volver a la página principal</Link>
+            <h1 className="detail-price">Producto no encontrado</h1>
+            <Link to="/" className="detail-title">
+              Pulse para volver a la página principal
+            </Link>
           </div>
         </section>
       </main>
@@ -37,18 +63,29 @@ function ProductDetailPage() {
 
           <p className="detail-price">{product.price} €</p>
 
-          <p className="detail-description"><strong>Descripción: </strong>{product.description}</p>
-          
-          <p className="detail-notes"><strong>Observaciones: </strong>{product.notes}</p>
+          <p className="detail-description">
+            <strong>Descripción: </strong>
+            {product.description}
+          </p>
 
-          <p className="detail-description"><strong>Vendedor: </strong>{product.seller}</p>
-          
+          {/* <p className="detail-notes">
+            <strong>Observaciones: </strong>
+            {product.notes}
+          </p>
+
+          <p className="detail-description">
+            <strong>Vendedor: </strong>
+            {product.seller}
+          </p> */}
+
           <div className="detail-buttons">
             <button className="fav-btn">❤ Favorito</button>
             <button className="add-btn">ADD TO CART</button>
           </div>
           <div className="detail-buttons">
-            <Link to="/" className="back-btn">↩</Link>
+            <Link to="/" className="back-btn">
+              ↩
+            </Link>
           </div>
         </div>
       </div>
