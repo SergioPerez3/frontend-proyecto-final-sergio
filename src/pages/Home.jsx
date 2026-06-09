@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import ProductCarousel from "../components/ProductCarousel.jsx";
 import { Link } from "react-router-dom";
 import "../index.css";
-import ProductList from "../components/ProductList.jsx";
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -93,22 +92,15 @@ function Home() {
         <div className="container">
           <h2> Los mas destacados esta semana : </h2>
 
-          <ProductCarousel products={featuredProducts} visible={3} />
+          <ProductCarousel products={featuredProducts} />
         </div>
       </section>
-      <section className="featured-section">
-        <div className="container">
-          <h2> Los mas destacados esta semana : </h2>
-
-          <ProductList products={featuredProducts} />
-        </div>
-      </section>
-
+  
       <section className="featured-section">
         <div className="container">
           <h2> Los mas nuevos :</h2>
 
-          <ProductCarousel products={newProducts} visible={3} />
+          <ProductCarousel products={newProducts} />
         </div>
       </section>
 

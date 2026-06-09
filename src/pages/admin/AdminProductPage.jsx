@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import ProductForm from "../../components/ProductForm";
 import { getProducts } from "../../services/productService";
 
@@ -9,8 +9,9 @@ function AdminProductPage() {
   const [error, setError] = useState("");
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [message, setMessage] = useState("");
+  const [productToDelete, setProductToDelete] = useState(null);
 
-   useEffect(() => {
+  useEffect(() => {
     const loadProducts = async () => {
       try {
         const data = await getProducts();
@@ -24,6 +25,7 @@ function AdminProductPage() {
     loadProducts();
   }, []);
 
+  const messageRef = useRef(null);
 
   const handleAddProduct = (productData) => {
     const newProduct = {
@@ -38,7 +40,7 @@ function AdminProductPage() {
     setMessage("Producto agregado correctamente");
   };
 
-  const handleDelete = (id) => {
+  const handleDeleteProduct = (id) => {
     const confirmed = confirm(
       "¿Estás seguro de que quieres eliminar este producto?",
     );
@@ -71,17 +73,33 @@ function AdminProductPage() {
       return;
     }
 
+    messageRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
+
     setTimeout(() => {
       setMessage("");
     }, 3000);
   }, [message]);
 
+  useEffect(() => {
+    if (!productToDelete) {
+      return;
+    }
 
-    if (loading) {
-    return <p className="empty-message">Cargando productos...</p>
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        setProductToDelete(null);
+      }
+    });
+  }, [productToDelete]);
+
+  if (loading) {
+    return <p className="empty-message">Cargando productos...</p>;
   }
-  if(error) {
-    <p className="empty-message">{error}</p>
+  if (error) {
+    <p className="empty-message">{error}</p>;
   }
 
   return (
@@ -91,7 +109,7 @@ function AdminProductPage() {
       <div className="admin-page-header">
         <div>
           <h2>Gestión de productos</h2>
-          <p>Próximamente podremos crear, editar y eliminar productos.</p>
+          <p>Agrega, edita o elimina tus productos fácilmente.</p>
         </div>
 
         <button
@@ -122,8 +140,9 @@ function AdminProductPage() {
               <h3>{product.name}</h3>
               <p>{product.description}</p>
               <p>{product.price}€</p>
-              <div>
+              <div className = "admin-actions">
                 <button
+                className="admin-action-button edit"
                   type="button"
                   onClick={() => {
                     setSelectedProduct(product);
@@ -132,7 +151,11 @@ function AdminProductPage() {
                 >
                   Editar
                 </button>
-                <button type="button" onClick={() => handleDelete(product._id)}>
+                <button 
+                  className="admin-action-button delete"
+                  type="button" 
+                  onClick={() => setProductToDelete(product)}
+                >
                   Eliminar
                 </button>
               </div>
@@ -140,6 +163,36 @@ function AdminProductPage() {
           </article>
         ))}
       </div>
+
+      {productToDelete && (
+        <div className="modal-overlay" onClick={() => setProductToDelete(null)}>
+          <div className="modal" onClick={(event) => event.stopPropagation()}>
+            <h2>Eliminar producto</h2>
+
+            <p>
+              ¿Desea eliminar <strong>{productToDelete.name}</strong>?
+            </p>
+
+            <div className="modal-actions">
+              <button
+                className="modal-button secondary"
+                type="button"
+                onClick={() => setProductToDelete(null)}
+              >
+                Cancelar
+              </button>
+
+              <button
+                className="modal-button danger"
+                type="button"
+                onClick={() => handleDeleteProduct(productToDelete.id)}
+              >
+                Eliminar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

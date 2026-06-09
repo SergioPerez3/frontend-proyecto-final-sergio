@@ -574,6 +574,44 @@ img {
   object-fit: contain;
   filter: drop-shadow(0 0 5px rgba(197, 161, 0, 0.4));
 }
+.admin-create-button {
+  width: fit-content;
+  padding: 0.75rem 1rem;
+  border: 1px solid #c5a10055;      
+  border-radius: 0.75rem;
+  background-color: #ad931d;        
+  color: #0d0d0d;                  
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.admin-create-button:hover {
+  background-color: #e0b800;        
+  border-color: #c5a100;          
+}
+
+.admin-action-button {
+  padding: 0.55rem 0.8rem;
+  border: 0;
+  border-radius: 0.6rem;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.admin-action-button.edit {
+  background-color: #1696a1;
+}
+
+.admin-action-button.delete {
+  background-color: #dc2626;
+}
+
+
+
+
 
 
 /* FOOTER---------- */
@@ -667,17 +705,14 @@ img {
 .product-form {
   display: grid;
   gap: 1rem;
-  background-color: #020617;
-  border: 1px solid #1e293b;
+  background: rgba(0, 0, 0, 0.55);  
+  border: 2px solid #c5a10055;           
   border-radius: 1rem;
   padding: 1.5rem;
   margin-bottom: 2rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
 }
 
-.form-group {
-  display: grid;
-  gap: 0.4rem;
-}
 
 .admin-page-header {
   display: flex;
@@ -692,19 +727,42 @@ img {
   margin-top: 0.5rem;
 }
 
+
+.form-group {
+  display: grid;
+  gap: 0.4rem;
+}
+
 .form-group label {
   font-weight: 600;
+  color: #c5a100;
+  font-size: 15px;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
-  width: 100%;
+ width: 100%;
   padding: 0.8rem 1rem;
-  border: 1px solid #334155;
-  border-radius: 0.75rem;
-  background-color: #0f172a;
-  color: #f8fafc;
+  border: 1px solid #333;
+  border-radius: 8px;
+  background-color: #0a0a0a;
+  color: #f5f5f5;
+  font-size: 15px;
+  transition: 0.25s ease;
+  outline: none;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #d4c9b5; /* crema suave */
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #c5a100;
+  box-shadow: 0 0 6px rgba(197, 161, 0, 0.5);
 }
 
 .form-group textarea {
@@ -712,6 +770,21 @@ img {
   resize: vertical;
 }
 
+.form-submit-btn {
+  width: 100%;
+  padding: 12px 20px;
+  background: #241f07;
+  color: #0d0d0d;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.2s ease;
+}
+.form-submit-btn:hover {
+  background: #e0b800;
+}
 
 
 
@@ -721,10 +794,54 @@ img {
 
 
 
+/* Modal */
 
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.modal {
+  width: min(500px, 90%);
+  padding: 2rem;
+  border-radius: 1rem;
+  background-color: #020617;
+  border: 1px solid #334155;
+}
 
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
 
+.modal-button {
+  padding: 0.7rem 1rem;
+  border: 0;
+  border-radius: 0.7rem;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.modal-button.secondary {
+  background-color: #374151;
+}
+
+.modal-button.danger {
+  background-color: #dc2626;
+}
+
+.movie-filters {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
 
 
 

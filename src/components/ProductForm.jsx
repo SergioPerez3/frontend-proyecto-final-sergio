@@ -40,7 +40,10 @@ function ProductForm(onAddProduct, product, onUpdateProduct) {
       return;
     }
 
-  
+    if (!form.description.trim()) {
+      alert("Ingrese una descripción");
+      return;
+    }
     // if (!form.category) {
     //   alert("Seleccione una categoría");
     //   return;
@@ -57,7 +60,7 @@ function ProductForm(onAddProduct, product, onUpdateProduct) {
     }
 
   if (isEditing) {
-    onUpdateProduct(product.id, form)
+    onUpdateProduct(product._id, form)
   } else {
     onAddProduct(form);
   }
@@ -79,7 +82,7 @@ useEffect(() => {
 
 
   return (
-    <form onSubmit={handleSubmit} className="product-form">
+    <form  className="product-form" onSubmit={handleSubmit}>
       <h2>{isEditing ? "Editar producto" : "Nuevo producto"}</h2>
 
       <div className="form-group">
@@ -91,7 +94,6 @@ useEffect(() => {
           name="name"
           value={form.name}
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -107,10 +109,11 @@ useEffect(() => {
         ></textarea>
       </div>
 
-      <div>
+      <div className="form-group">
         <label htmlFor="price">Precio:</label>
         <input
           type="number"
+          placeholder="....€"
           id="price"
           name="price"
           min="0"
@@ -130,43 +133,16 @@ useEffect(() => {
         >
           <option value="">Selecciona una categoría</option>
           {categories.map((category) => (
-            <option key={category.id} value={category.name}>
+            <option key={category._id} value={category.name}>
               {category.name}
             </option>
           ))}
         </select>
       </div>
 
-      {/* <div>
-        <label htmlFor="categories">Categoría:</label>
-        <select
-          name="categories"
-          id="categories"
-          value={form.category}
-          onChange={handleChange}
-        >
-          <option value="">Selecciona una categoría</option>
-          <option value="Tecnología y electrónica">
-            Tecnología y electrónica
-          </option>
-          <option value="Moda y accesorios">Moda y accesorios</option>
-          <option value="Deporte y ocio">Deporte y ocio</option>
-          <option value="Hogar y jardín">Hogar y jardín</option>
-          <option value="Mobiliario y decoración">
-            Mobiliario y decoración
-          </option>
-          <option value="Libros, música y películas">
-            Libros, música y películas
-          </option>
-          <option value="Herramientas y bricolaje">
-            Herramientas y bricolaje
-          </option>
-          <option value="Otros">Otros</option>
-        </select>
-      </div> */}
 
       <div>
-        <label htmlFor="image">URL de imagen:</label>
+        <label htmlFor="image">Foto del producto:</label>
         <input
           type="text"
           id="image"
@@ -195,7 +171,7 @@ useEffect(() => {
         />
       </div> */}
 
-      <div>
+      <div className="form-group">
         <label htmlFor="featured">Destacado:</label>
         <input
           type="checkbox"
@@ -206,7 +182,9 @@ useEffect(() => {
         />
       </div>
 
-      <button type="submit">{isEditing ? "Actualizar producto" : "Agregar producto"}</button>
+      <button className="button movie-form-button" type="submit">
+        {isEditing ? "Actualizar producto" : "Agregar producto"}
+        </button>
     </form>
   );
 }
