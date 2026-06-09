@@ -189,6 +189,7 @@ img {
   display: block;
 }
 
+
 .catalog-section,
 .new-movies-section {
   padding: 20px 0 20px;
@@ -702,7 +703,12 @@ img {
 
 /* --------PRODUCT FORM------------------ */
 
+
+
+
 .product-form {
+  position: relative;
+  z-index: 9999;
   display: grid;
   gap: 1rem;
   background: rgba(0, 0, 0, 0.55);  
@@ -711,6 +717,10 @@ img {
   padding: 1.5rem;
   margin-bottom: 2rem;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+}
+.product-form select {
+  position: relative;
+  z-index: 99999;
 }
 
 

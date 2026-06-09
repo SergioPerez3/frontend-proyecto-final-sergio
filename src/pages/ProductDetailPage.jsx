@@ -15,7 +15,7 @@ function ProductDetailPage() {
         const data = await getProductById(id)
         setProduct(data)
       } catch {
-        setError("Producto no encontrado")
+        setError(error.message)
       } finally {
         setLoading(false)
       }
@@ -30,12 +30,12 @@ function ProductDetailPage() {
     <p className="empty-message">{error}</p>
   }
 
-  if (!product) {
+  if (error || !product) {
     return (
       <main>
         <section className="catalog-section">
           <div className="container">
-            <h1 className="detail-price">Producto no encontrado</h1>
+            <h1 className="detail-price">{error || "Producto no encontrado"}</h1>
             <Link to="/" className="detail-title">
               Pulse para volver a la página principal
             </Link>

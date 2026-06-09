@@ -1,6 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 import ProductForm from "../../components/ProductForm";
-import { getProducts } from "../../services/productService";
+import {
+  createProduct,
+  deleteProduct,
+  getProducts,
+  updateProduct,
+} from "../../services/productService";
 
 function AdminProductPage() {
   const [showForm, setShowForm] = useState(false);
@@ -27,46 +32,48 @@ function AdminProductPage() {
 
   const messageRef = useRef(null);
 
-  const handleAddProduct = (productData) => {
-    const newProduct = {
-      ...productData,
-      id: Date.now(),
-    };
+  const handleAddProduct = async (productData) => {
+    try {
+      const newProduct = await createProduct(productData);
 
-    setProducts([...products, newProduct]);
+      setProducts([...products, newProduct]);
 
-    setShowForm(false);
+      setShowForm(false);
 
-    setMessage("Producto agregado correctamente");
-  };
-
-  const handleDeleteProduct = (id) => {
-    const confirmed = confirm(
-      "¿Estás seguro de que quieres eliminar este producto?",
-    );
-    if (!confirmed) {
-      return;
+      setMessage("Producto agregado correctamente");
+    } catch (error) {
+      setError(error.message);
     }
-    const filteredProducts = products.filter((product) => product._id != id);
-    setProducts(filteredProducts);
-
-    setMessage("Producto eliminado correctamente");
   };
 
-  const handleUpdateProduct = (productId, productData) => {
-    const updatedProduct = products.map((product) => {
-      if (product._id == productId) {
-        const updatedProduct = {
-          ...product,
-          ...productData,
-        };
-        return updatedProduct;
-      }
-      return product;
-    });
-    setProducts(updatedProduct);
-    setSelectedProduct(null);
-    setMessage("Producto actualizado correctamente");
+  const handleDeleteProduct = async (id) => {
+    try {
+      await deleteProduct(id);
+      const filteredProducts = products.filter((product) => product._id != id);
+      setProducts(filteredProducts);
+
+      setMessage("Producto eliminado correctamente");
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const handleUpdateProduct = async (productId, productData) => {
+    try {
+      const updatedProduct = await updateProduct(productId, productData);
+
+      const updatedProducts = products.map((product) => {
+        if (product._id == productId) {
+          return updatedProduct;
+        }
+        return product;
+      });
+      setProducts(updatedProducts);
+      setSelectedProduct(null);
+      setMessage("Producto actualizado correctamente");
+    } catch (error) {
+      setError(error.message);
+    }
   };
   useEffect(() => {
     if (!message) {
@@ -140,9 +147,9 @@ function AdminProductPage() {
               <h3>{product.name}</h3>
               <p>{product.description}</p>
               <p>{product.price}€</p>
-              <div className = "admin-actions">
+              <div className="admin-actions">
                 <button
-                className="admin-action-button edit"
+                  className="admin-action-button edit"
                   type="button"
                   onClick={() => {
                     setSelectedProduct(product);
@@ -151,9 +158,9 @@ function AdminProductPage() {
                 >
                   Editar
                 </button>
-                <button 
+                <button
                   className="admin-action-button delete"
-                  type="button" 
+                  type="button"
                   onClick={() => setProductToDelete(product)}
                 >
                   Eliminar
@@ -185,7 +192,7 @@ function AdminProductPage() {
               <button
                 className="modal-button danger"
                 type="button"
-                onClick={() => handleDeleteProduct(productToDelete.id)}
+                onClick={() => handleDeleteProduct(productToDelete._id)}
               >
                 Eliminar
               </button>

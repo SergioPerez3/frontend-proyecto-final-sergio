@@ -11,7 +11,7 @@ const initialForm = {
   featured:false,
 };
 
-function ProductForm(onAddProduct, product, onUpdateProduct) {
+function ProductForm({onAddProduct, product, onUpdateProduct}) {
   const [form, setForm] = useState(initialForm);
 
   const isEditing = Boolean(product);
@@ -119,11 +119,11 @@ useEffect(() => {
           min="0"
           value={form.price}
           onChange={handleChange}
-          required
+          
         />
       </div>
 
-      <div>
+      <div className="form-group">
         <label htmlFor="category">Categoría:</label>
         <select
           id="category"
@@ -141,7 +141,7 @@ useEffect(() => {
       </div>
 
 
-      <div>
+      <div className="form-group">
         <label htmlFor="image">Foto del producto:</label>
         <input
           type="text"
