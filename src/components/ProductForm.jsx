@@ -11,8 +11,9 @@ const initialForm = {
   featured:false,
 };
 
-function ProductForm({onAddProduct, product, onUpdateProduct}) {
+function ProductForm({ onAddProduct, product, onUpdateProduct, isSaving }) {
   const [form, setForm] = useState(initialForm);
+  
 
   const isEditing = Boolean(product);
 
@@ -27,7 +28,7 @@ function ProductForm({onAddProduct, product, onUpdateProduct}) {
 
 
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
   
     if (!form.name.trim()) {
@@ -60,9 +61,9 @@ function ProductForm({onAddProduct, product, onUpdateProduct}) {
     }
 
   if (isEditing) {
-    onUpdateProduct(product._id, form)
+    await onUpdateProduct(product._id, form)
   } else {
-    onAddProduct(form);
+    await onAddProduct(form);
   }
   
   setForm(initialForm);
@@ -133,8 +134,8 @@ useEffect(() => {
         >
           <option value="">Selecciona una categoría</option>
           {categories.map((category) => (
-            <option key={category._id} value={category.name}>
-              {category.name}
+            <option key={category._id} value={category}>
+              {category}
             </option>
           ))}
         </select>
@@ -182,9 +183,18 @@ useEffect(() => {
         />
       </div>
 
-      <button className="button movie-form-button" type="submit">
-        {isEditing ? "Actualizar producto" : "Agregar producto"}
+      <button disabled={isSaving} className="button movie-form-button" type="submit">
+
+        {/* {isSaving 
+        ? "Guardando..." 
+        : isEditing 
+        ? "Actualizar producto" 
+        : "Agregar producto"} */}
+
+        {isSaving ? "Guardando..." : "Guardar producto"}
         </button>
+
+
     </form>
   );
 }

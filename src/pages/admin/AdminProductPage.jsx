@@ -15,6 +15,10 @@ function AdminProductPage() {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [message, setMessage] = useState("");
   const [productToDelete, setProductToDelete] = useState(null);
+  const [isSaving, setIsSaving] = useState(false);
+
+  const messageRef = useRef(null);
+  const formRef = useRef(null);
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -30,10 +34,10 @@ function AdminProductPage() {
     loadProducts();
   }, []);
 
-  const messageRef = useRef(null);
-
   const handleAddProduct = async (productData) => {
     try {
+      setIsSaving(true);
+
       const newProduct = await createProduct(productData);
 
       setProducts([...products, newProduct]);
@@ -43,11 +47,14 @@ function AdminProductPage() {
       setMessage("Producto agregado correctamente");
     } catch (error) {
       setError(error.message);
+    } finally {
+      setIsSaving(false);
     }
   };
 
   const handleDeleteProduct = async (id) => {
     try {
+      setIsSaving(true);
       await deleteProduct(id);
       const filteredProducts = products.filter((product) => product._id != id);
       setProducts(filteredProducts);
@@ -55,11 +62,14 @@ function AdminProductPage() {
       setMessage("Producto eliminado correctamente");
     } catch (error) {
       setError(error.message);
+    } finally {
+      setIsSaving(false);
     }
   };
 
   const handleUpdateProduct = async (productId, productData) => {
     try {
+      setIsSaving(true);
       const updatedProduct = await updateProduct(productId, productData);
 
       const updatedProducts = products.map((product) => {
@@ -73,6 +83,8 @@ function AdminProductPage() {
       setMessage("Producto actualizado correctamente");
     } catch (error) {
       setError(error.message);
+    } finally {
+      setIsSaving(false);
     }
   };
   useEffect(() => {
@@ -102,6 +114,16 @@ function AdminProductPage() {
     });
   }, [productToDelete]);
 
+  useEffect(() => {
+    if (!selectedProduct) {
+      return;
+    }
+    formRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }, [selectedProduct]);
+
   if (loading) {
     return <p className="empty-message">Cargando productos...</p>;
   }
@@ -111,10 +133,14 @@ function AdminProductPage() {
 
   return (
     <section className="catalog-section">
-      {message && <div className="admin-message">{message}</div>}
+      {message && (
+        <div ref={messageRef} className="admin-message">
+          {message}
+        </div>
+      )}
 
       <div className="admin-page-header">
-        <div>
+        <div ref={formRef}>
           <h2>Gestión de productos</h2>
           <p>Agrega, edita o elimina tus productos fácilmente.</p>
         </div>
@@ -136,6 +162,7 @@ function AdminProductPage() {
           product={selectedProduct}
           onAddProduct={handleAddProduct}
           onUpdateProduct={handleUpdateProduct}
+          isSaving={isSaving}
         />
       )}
 
@@ -182,6 +209,7 @@ function AdminProductPage() {
 
             <div className="modal-actions">
               <button
+                disabled={isSaving}
                 className="modal-button secondary"
                 type="button"
                 onClick={() => setProductToDelete(null)}
@@ -190,11 +218,13 @@ function AdminProductPage() {
               </button>
 
               <button
+                disabled={isSaving}
                 className="modal-button danger"
                 type="button"
                 onClick={() => handleDeleteProduct(productToDelete._id)}
               >
                 Eliminar
+                {isSaving ? "Eliminando..." : "Eliminar"}
               </button>
             </div>
           </div>
