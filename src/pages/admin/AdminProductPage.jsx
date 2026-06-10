@@ -55,9 +55,14 @@ function AdminProductPage() {
   const handleDeleteProduct = async (id) => {
     try {
       setIsSaving(true);
+
       await deleteProduct(id);
+
       const filteredProducts = products.filter((product) => product._id != id);
+
       setProducts(filteredProducts);
+      
+      setProductToDelete(null);
 
       setMessage("Producto eliminado correctamente");
     } catch (error) {
@@ -223,7 +228,7 @@ function AdminProductPage() {
                 type="button"
                 onClick={() => handleDeleteProduct(productToDelete._id)}
               >
-                Eliminar
+               
                 {isSaving ? "Eliminando..." : "Eliminar"}
               </button>
             </div>

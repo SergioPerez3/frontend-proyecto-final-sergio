@@ -474,9 +474,10 @@ img {
   border: 1px solid #c5a10055;
   border-radius: 12px;
   padding: 30px;
-  backdrop-filter: blur(6px);
+  /* backdrop-filter: blur(6px); */
   text-align: center;
   margin-bottom: 25px;
+  
 }
 
 .admin-product h1 {
@@ -819,8 +820,8 @@ img {
   width: min(500px, 90%);
   padding: 2rem;
   border-radius: 1rem;
-  background-color: #020617;
-  border: 1px solid #334155;
+  background-color: #1f1908;
+  border: 1px solid #bc9710;
 }
 
 .modal-actions {
