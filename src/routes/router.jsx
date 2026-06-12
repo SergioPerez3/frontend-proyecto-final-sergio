@@ -11,6 +11,7 @@ import ContactUs from "../pages/ContactUs";
 import AdminLayout from "../layouts/AdminLayout";
 import AdminProductPage from "../pages/admin/AdminProductPage";
 import DashboardPage from "../pages/admin/DaskboardPage";
+import RegisterPage from "../pages/RegisterPage";
 
 
 export const router = createBrowserRouter([
@@ -32,6 +33,12 @@ export const router = createBrowserRouter([
         element: <ProductDetailPage />,
       },
       {
+        path:"register",
+        element: <RegisterPage />
+      },
+
+      
+      {
         path: "about",
         element: <AboutUs />,
       },
@@ -43,6 +50,7 @@ export const router = createBrowserRouter([
         path: "*",
         element: <NotfoundPage />,
       },
+
     ],
   },
 
