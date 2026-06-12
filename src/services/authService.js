@@ -20,3 +20,17 @@ export const register = async (userData) => {
 
   return handleResponse(response);
 };
+
+
+export const login = async (userData) => {
+  const response = await fetch(`${API_URL}/login`, {
+    method: "POST",
+    headers: { "Content-type": "application/json" },
+    body: JSON.stringify(userData),
+  });
+
+  return handleResponse(response);
+};
+
+
+

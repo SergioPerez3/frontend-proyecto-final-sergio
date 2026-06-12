@@ -12,6 +12,7 @@ import AdminLayout from "../layouts/AdminLayout";
 import AdminProductPage from "../pages/admin/AdminProductPage";
 import DashboardPage from "../pages/admin/DaskboardPage";
 import RegisterPage from "../pages/RegisterPage";
+import LoginPage from "../pages/LoginPage";
 
 
 export const router = createBrowserRouter([
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
       {
         path:"register",
         element: <RegisterPage />
+      },
+      {
+        path: "login",
+        element: <LoginPage/>
       },
 
       

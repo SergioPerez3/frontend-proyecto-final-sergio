@@ -1,17 +1,14 @@
 import { useState } from "react";
-import { register } from "../services/authService";
+import { login } from "../services/authService";
 
 
 const initialForm = {
-  name: "",
   email: "",
   password: "",
-  password_confirmation: "",
 };
 
 
-
-function RegisterPage() {
+function LoginPage() {
   const [form, setForm] = useState(initialForm);
   const [message, setMessage] = useState("");
   const [error, setError] = useState(null);
@@ -32,21 +29,14 @@ function RegisterPage() {
       setError("");
       setMessage("");
 
-
-      if (form.password != form.password_confirmation) {
-        setError("Las contraseñas no coinciden");
-        return;
-      }
-
       const userData = {
-        name: form.name.trim(),
         email: form.email.trim(),
         password: form.password,
       }
 
-      const data = await register(userData);
+      const data = await login(userData);
 
-      setMessage(data.message || "Usuario registrado exitósamente")
+      setMessage(data.message || "Sesión iniciada correctamente")
     } catch (error) {
       setError(error.message);
     }
@@ -56,23 +46,14 @@ function RegisterPage() {
     <main>
       <section className="auth-section">
         <div className="container">
-        <form className="auth-form" onSubmit={handleSubmit}>
-          <h1>Crear cuenta</h1>
+          <form className="auth-form" onSubmit={handleSubmit}>
+          <h1>Iniciar sesión</h1>
 
           {error && <p className="auth-error">{error}</p>}
           {message && <p className="auth-message">{message}</p>}
 
           
-            <div className="form-group">
-              <label htmlFor="name">Nombre: </label>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                value={form.name}
-                onChange={handleChange}
-              />
-            </div>
+           
 
             <div className="form-group">
               <label htmlFor="email">Correo: </label>
@@ -96,20 +77,9 @@ function RegisterPage() {
                 onChange={handleChange}
               />
             </div>
-            <div className="form-group">
-              <label htmlFor="password_confirmation">
-                Confirmar contraseña:{" "}
-              </label>
-              <input
-                type="password"
-                name="password_confirmation"
-                id="password_confirmation"
-                value={form.password_confirmation}
-                onChange={handleChange}
-              />
-            </div>
+    
             <button className="add-btn" type="submit">
-              Registrar
+              Iniciar sesión
             </button>
           </form>
         </div>
@@ -118,4 +88,4 @@ function RegisterPage() {
   );
 }
 
-export default RegisterPage;
+export default LoginPage;
