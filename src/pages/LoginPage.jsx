@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { login } from "../services/authService";
-
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
 const initialForm = {
   email: "",
@@ -9,7 +10,11 @@ const initialForm = {
 
 
 function LoginPage() {
+  const context = useAuth();
+  const navigate = useNavigate();
+
   const [form, setForm] = useState(initialForm);
+
   const [message, setMessage] = useState("");
   const [error, setError] = useState(null);
 
@@ -35,8 +40,14 @@ function LoginPage() {
       }
 
       const data = await login(userData);
+      
+      context.login(data);
 
       setMessage(data.message || "Sesión iniciada correctamente")
+
+      setForm(initialForm);
+
+      navigate("/admin/products")
     } catch (error) {
       setError(error.message);
     }

@@ -13,6 +13,7 @@ import AdminProductPage from "../pages/admin/AdminProductPage";
 import DashboardPage from "../pages/admin/DaskboardPage";
 import RegisterPage from "../pages/RegisterPage";
 import LoginPage from "../pages/LoginPage";
+import authLoader from "../loaders/authLoader";
 
 
 export const router = createBrowserRouter([
@@ -67,10 +68,12 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
+        loader: authLoader,
         element: <DashboardPage />,
       },
       {
         path: "products",
+        loader: authLoader,
         element: <AdminProductPage />,
       },
     

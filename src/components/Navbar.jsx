@@ -1,11 +1,19 @@
+import { useAuth } from "../hooks/useAuth";
 import "./Navbar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Navbar() {
+  const navigate = useNavigate();
+  const {user, logout } = useAuth();
+
+  const handleLogout = () => {
+    logout()
+    navigate("/")
+  }
+
   return (
     <nav className="navbar">
-
-       <div className="navbar-logo">
+      <div className="navbar-logo">
         <img src="/images/logoNavbar.png" alt="Logo" />
       </div>
 
@@ -17,8 +25,10 @@ function Navbar() {
       </div>
 
       <div className="navbar-right">
-        <Link to="/register">Regístrate</Link>
-        <Link to="/login" className="btn-login">Login</Link>
+        {!user && <Link to="/register">Regístrate</Link>}
+        {!user && <Link to="/login" className="btn-login">Login</Link>}
+
+        {user && <button type="button" className="btn-logout" onClick={handleLogout}>Logout</button>}
       </div>
     </nav>
   );

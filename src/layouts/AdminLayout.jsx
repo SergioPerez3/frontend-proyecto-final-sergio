@@ -19,7 +19,7 @@ function AdminLayout() {
                 <button>
                 <Link to="/products">Ver sitio Web</Link>
                 </button>
-                <Link to= "/">↩</Link>
+                <Link to= "/admin">↩</Link>
             </nav>
             <Outlet/> 
             </div>

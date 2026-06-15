@@ -63,3 +63,18 @@
   max-width: 100%; 
   object-fit: contain;
 }
+
+
+.btn-logout {
+  padding: 8px 14px;
+  border: 1px solid #b08610;
+  background: none;
+  color: #ffffff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-logout:hover {
+  background: #c5a1009c;
+  color: #ffffff;
+}
