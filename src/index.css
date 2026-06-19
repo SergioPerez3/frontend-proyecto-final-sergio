@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 * {
   box-sizing: border-box;
 }
@@ -474,10 +476,8 @@ img {
   border: 1px solid #c5a10055;
   border-radius: 12px;
   padding: 30px;
-  /* backdrop-filter: blur(6px); */
   text-align: center;
   margin-bottom: 25px;
-  
 }
 
 .admin-product h1 {
@@ -601,6 +601,7 @@ img {
   color: #ffffff;
   font-weight: 600;
   cursor: pointer;
+  margin-bottom: 1rem;
 }
 
 .admin-action-button.edit {
