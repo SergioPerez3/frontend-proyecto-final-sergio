@@ -31,8 +31,8 @@ function ProductsPage() {
           order,
           selectedCategory,
         );
-        console.log(data);
         setProducts(data.products);
+        setTotalPages(data.totalPages);
       } catch {
         setError("Error al cargar los productos");
       } finally {
@@ -46,7 +46,7 @@ function ProductsPage() {
   const hasResults = products.length > 0;
 
   const categories = [
-    "Todos",
+    "",
     ...new Set(products.map((product) => product.category)),
   ];
 
