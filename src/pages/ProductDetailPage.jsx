@@ -83,7 +83,7 @@ function ProductDetailPage() {
             <button className="add-btn">ADD TO CART</button>
           </div>
           <div className="detail-buttons">
-            <Link to="/" className="back-btn">
+            <Link to="/products" className="back-btn">
               ↩
             </Link>
           </div>

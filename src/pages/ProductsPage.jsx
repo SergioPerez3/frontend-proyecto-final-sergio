@@ -13,7 +13,7 @@ function ProductsPage() {
   const [totalPages, setTotalPages] = useState(1);
 
   const [search, setSearch] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("Todos");
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [sortBy, setSortBy] = useState("default");
 
   useEffect(() => {
@@ -31,8 +31,8 @@ function ProductsPage() {
           order,
           selectedCategory,
         );
-
-        setProducts(data);
+        console.log(data);
+        setProducts(data.products);
       } catch {
         setError("Error al cargar los productos");
       } finally {
@@ -75,8 +75,7 @@ function ProductsPage() {
 
           <div className="pagination">
             <button onClick={() => setPage(page - 1)} disabled={page === 1}>
-              Anterior
-            </button>
+              {"<<"}</button>
 
             <span>
               {page} de {totalPages}
@@ -86,7 +85,7 @@ function ProductsPage() {
               onClick={() => setPage(page + 1)}
               disabled={page === totalPages}
             >
-              Siguiente
+              {">>"}
             </button>
           </div>
         </>
