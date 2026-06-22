@@ -1,13 +1,16 @@
 import ProductList from "../components/ProductList.jsx";
 import { useState, useEffect } from "react";
 import { getProducts } from "../services/productService.js";
+import ProductFilters from "../components/ProductFilters.jsx";
 import "../index.css";
-
 
 function ProductsPage() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Todos");
@@ -16,133 +19,88 @@ function ProductsPage() {
   useEffect(() => {
     const loadProducts = async () => {
       try {
-        const data = await getProducts();
-        setProducts(data)
+        const field =
+          sortBy === "newest" || sortBy === "oldest" ? "year" : "title";
+        const order = sortBy === "az" || sortBy === "newest" ? "asc" : "desc";
+
+        const data = await getProducts(
+          page,
+          4,
+          search,
+          field,
+          order,
+          selectedCategory,
+        );
+
+        setProducts(data);
       } catch {
-        setError("No se pudieron obtener los productos")
+        setError("Error al cargar los productos");
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
-    }
+    };
+
     loadProducts();
-  },[])
+  }, [search, selectedCategory, sortBy, page]);
 
-  let filteredProducts = [];
-
-  if (search || selectedCategory !== "Todos") {
-    filteredProducts = products.filter((product) => {
-      const matchesSearch = product.name
-        .toLowerCase()
-        .includes(search.toLowerCase());
-
-      const matchesCategory =
-        selectedCategory == "Todos" || product.category === selectedCategory;
-
-      return matchesSearch && matchesCategory;
-    });
-  }
-  const sortedProducts = [...filteredProducts].sort((a, b) => {
-    if (sortBy == "az") {
-      if (a.title < b.title) return -1;
-      if (a.title > b.title) return 1;
-      return 0;
-    }
-
-    if (sortBy === "newest") {
-      return b.createdAt - a.createdAt;
-    }
-
-    if (sortBy === "oldest") {
-      return a.createdAt - b.createdAt;
-    }
-
-    if (sortBy === "low") {
-      return a.price - b.price;
-    }
-
-    if (sortBy === "high") {
-      return b.price - a.price;
-    }
-  });
-
-  const hasResults = filteredProducts.length > 0;
+  const hasResults = products.length > 0;
 
   const categories = [
     "Todos",
     ...new Set(products.map((product) => product.category)),
   ];
 
-  const allProducts = products;
-
-  if(loading) {
-    return <p className="empty-message">Cargando productos...</p>
+  if (loading) {
+    return <p className="empty-message">Cargando productos...</p>;
   }
 
-  if(error) {
-    return <p className="empty-message">{error}</p>
+  if (error) {
+    return <p className="empty-message">{error}</p>;
   }
 
   return (
     <main>
-      <section className="catalog-section">
-        <div className="container">
-          <h2 className="product-page-h2">Explora todos los productos</h2>
-          <input
-            className="search-input"
-            type="search"
-            placeholder="Buscar productos..."
-            name="search"
-            id="search"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-          <select
-            className="category-select"
-            name="category"
-            id="category"
-            value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)}
-          >
-            {categories.map((category) => (
-              <option key={category} value={category}>
-                {category}
-              </option>
-            ))}
-          </select>
-          <select
-            className="filter-price"
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value)}
-          >
-            <option value="">Precio</option>
-            <option value="low">Menor a mayor</option>
-            <option value="high">Mayor a menor</option>
-          </select>
-          <select
-            className="filter-price"
-            value={sortBy}
-            onChange={(event) => setSortBy(event.target.value)}
-          >
-            <option value="default">Orden por defecto</option>
-            <option value="az">A-Z</option>
-            <option value="newest">Más nuevo</option>
-            <option value="oldest">Más viejo</option>
-          </select>
+      <ProductFilters
+        search={search}
+        selectedCategory={selectedCategory}
+        sortBy={sortBy}
+        categories={categories}
+        onSearchChange={setSearch}
+        onCategoryChange={setSelectedCategory}
+        onSortChange={setSortBy}
+      />
+      {hasResults ? (
+        <>
+          <ProductList products={products} />
 
-          {search && !hasResults && (
-            <p className="empty-message">
-              No encontramos resultados para "{search}"
-            </p>
-          )}
-          {hasResults && <ProductList products={sortedProducts} />}
-        </div>
-      </section>
+          <div className="pagination">
+            <button onClick={() => setPage(page - 1)} disabled={page === 1}>
+              Anterior
+            </button>
 
-      <section className="featured-section">
+            <span>
+              {page} de {totalPages}
+            </span>
+
+            <button
+              onClick={() => setPage(page + 1)}
+              disabled={page === totalPages}
+            >
+              Siguiente
+            </button>
+          </div>
+        </>
+      ) : (
+        <p className="empty-message">
+          No encontramos resultados para "{search}"
+        </p>
+      )}
+
+      {/* <section className="featured-section">
         <div className="container">
-          <ProductList products={allProducts} />
+          <ProductList products={products} />
         </div>
-      </section>
+      </section> */}
     </main>
   );
 }
