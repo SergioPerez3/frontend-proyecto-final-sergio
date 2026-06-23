@@ -1,6 +1,6 @@
 import ProductList from "../components/ProductList.jsx";
 import { useState, useEffect } from "react";
-import { getProducts } from "../services/productService.js";
+import { getProducts, getProductsCategories } from "../services/productService.js";
 import ProductFilters from "../components/ProductFilters.jsx";
 import "../index.css";
 
@@ -16,6 +16,22 @@ function ProductsPage() {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [sortBy, setSortBy] = useState("default");
 
+  const [categories, SetCategories] = useState([])
+
+
+  useEffect(() => {
+    const loadCategories = async () => {
+      try {
+      const data = await getProductsCategories();
+
+      SetCategories(data)
+      } catch {
+        setError("No se pueden cargar las categorias")
+      }
+    }
+    loadCategories();
+  },[]);
+
   useEffect(() => {
     const loadProducts = async () => {
       try {
@@ -25,7 +41,7 @@ function ProductsPage() {
 
         const data = await getProducts(
           page,
-          4,
+          6,
           search,
           field,
           order,
@@ -45,10 +61,10 @@ function ProductsPage() {
 
   const hasResults = products.length > 0;
 
-  const categories = [
-    "",
-    ...new Set(products.map((product) => product.category)),
-  ];
+  // const categories = [
+  //   "",
+  //   ...new Set(products.map((product) => product.category)),
+  // ];
 
   if (loading) {
     return <p className="empty-message">Cargando productos...</p>;
@@ -74,7 +90,9 @@ function ProductsPage() {
           <ProductList products={products} />
 
           <div className="pagination">
-            <button onClick={() => setPage(page - 1)} disabled={page === 1}>
+            <button onClick={() => setPage(page - 1)} 
+            disabled={page === 1}
+            >
               {"<<"}</button>
 
             <span>

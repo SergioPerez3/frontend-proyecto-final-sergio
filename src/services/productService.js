@@ -34,6 +34,18 @@ export const getProducts = async (
   return handleResponse(response);
 };
 
+export const getProductsCategories = async () => {
+  const response = await fetch(`${API_URL}/categories`);
+
+  return handleResponse(response);
+};
+
+export const getProductsFeatured = async () => {
+  const response = await fetch(`${API_URL}/featured`);
+
+  return handleResponse(response);
+};
+
 export const getProductById = async (id) => {
   const response = await fetch(`${API_URL}/${id}`);
 
@@ -41,11 +53,10 @@ export const getProductById = async (id) => {
 };
 
 export const createProduct = async (productData) => {
-
   const token = getToken();
-  
-  if(!token) {
-    throw new Error("No autorizado")
+
+  if (!token) {
+    throw new Error("No autorizado");
   }
 
   const response = await fetch(API_URL, {
@@ -59,9 +70,9 @@ export const createProduct = async (productData) => {
 
 export const updateProduct = async (productId, productData) => {
   const token = getToken();
-  
-  if(!token) {
-    throw new Error("No autorizado")
+
+  if (!token) {
+    throw new Error("No autorizado");
   }
   const response = await fetch(`${API_URL}/${productId}`, {
     method: "PUT",
@@ -74,9 +85,9 @@ export const updateProduct = async (productId, productData) => {
 
 export const deleteProduct = async (productId) => {
   const token = getToken();
-  
-  if(!token) {
-    throw new Error("No autorizado")
+
+  if (!token) {
+    throw new Error("No autorizado");
   }
 
   const response = await fetch(`${API_URL}/${productId}`, {

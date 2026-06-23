@@ -1,4 +1,7 @@
-import { getProducts } from "../services/productService.js";
+import {
+  getProducts,
+  getProductsFeatured,
+} from "../services/productService.js";
 import { useState, useEffect } from "react";
 import ProductCarousel from "../components/ProductCarousel.jsx";
 import { Link } from "react-router-dom";
@@ -9,13 +12,43 @@ function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+  const [productsModa, setProductsModa] = useState([]);
+  const [productsSport, setProductsSport] = useState([]);
+  const [productsFeatured, setProductsFeatured] = useState([]);
+  const [newProducts, setNewProducts] = useState([])
+
   useEffect(() => {
     const loadProducts = async () => {
       try {
-        const data = await getProducts();
-        setProducts(data.products);
+        const data = await getProducts(
+          1,
+          5,
+          "",
+          "title",
+          "asc",
+          "Moda y accesorios",
+        );
+        setProductsModa(data.products);
+
+        // const dataSport = await getProducts(
+        //   1,
+        //   5,
+        //   "",
+        //   "title",
+        //   "asc",
+        //   "Moda y accesorios",
+        // )
+        // setProductsSport(dataSport.products);
+
+        const dataFeatured = await getProductsFeatured();
+        setProductsFeatured(dataFeatured.products);
+
+        const dataNewProducts = await getProducts(1, 5, "", "createdAt", "desc")
+        setNewProducts(dataNewProducts.products)
+
+        
       } catch {
-        setError("No se puede cargar el producto");
+        setError("No se pueden cargar los productos");
       } finally {
         setLoading(false);
       }
@@ -23,15 +56,35 @@ function Home() {
     loadProducts();
   }, []);
 
-  const modaProducts = products.filter((product) =>
-    product.category.startsWith("Moda"),
-  );
-  const sportProducts = products.filter((product) =>
-    product.category.startsWith("Deporte"),
-  );
-  const featuredProducts = products.filter((product) => product.featured);
 
-  const newProducts = products.slice(0, 3); // 3 primeros
+
+
+  // useEffect(() => {
+  //   const loadProducts = async () => {
+  //     try {
+  //       const data = await getProducts();
+  //       setProducts(data.products);
+  //     } catch {
+  //       setError("No se puede cargar el producto");
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+  //   loadProducts();
+  // }, []);
+
+
+
+
+  // const modaProducts = products.filter((product) =>
+  //   product.category.startsWith("Moda"),
+  // );
+  // const sportProducts = products.filter((product) =>
+  //   product.category.startsWith("Deporte"),
+  // );
+  // const featuredProducts = products.filter((product) => product.featured);
+
+  // const newProducts = products.slice(0, 3); // 3 primeros
 
   if (loading) {
     return <p className="empty-message">Cargando productos...</p>;
@@ -92,10 +145,10 @@ function Home() {
         <div className="container">
           <h2> Los mas destacados esta semana : </h2>
 
-          <ProductCarousel products={featuredProducts} />
+          <ProductCarousel products={productsFeatured} />
         </div>
       </section>
-  
+
       <section className="featured-section">
         <div className="container">
           <h2> Los mas nuevos :</h2>
@@ -108,7 +161,7 @@ function Home() {
         <div className="container">
           <h2> Únete a la moda :</h2>
 
-          <ProductCarousel products={modaProducts} visible={3} />
+          <ProductCarousel products={productsModa} visible={3} />
         </div>
       </section>
 
@@ -116,7 +169,7 @@ function Home() {
         <div className="container">
           <h2> Haz deporte este verano :</h2>
 
-          <ProductCarousel products={sportProducts} visible={3} />
+          <ProductCarousel products={productsSport} visible={3} />
         </div>
       </section>
     </main>
