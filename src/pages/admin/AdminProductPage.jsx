@@ -175,7 +175,7 @@ function AdminProductPage() {
       <div className="admin-list">
         {products.map((product) => (
           <article className="admin-list-item" key={product._id}>
-            <img src={product.image} alt={product.name} />
+            <img src={`/images/product/${product.image}`} alt={product.name} />
             <div>
               <h3>{product.name}</h3>
               <p>{product.description}</p>

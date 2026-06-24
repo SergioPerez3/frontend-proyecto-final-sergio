@@ -51,10 +51,10 @@ function ProductDetailPage() {
         <div className="detail-images">
           {product.images && product.images.length > 0 ? (
             product.images.map((img, index) => (
-              <img key={index} src={img} alt={product.name} />
+              <img key={index} src={`/images/product/${img}`} alt={product.name} />
             ))
           ) : (
-            <img src={product.image} alt={product.name} />
+            <img src={`/images/product/${product.image}`} alt={product.name} />
           )}
         </div>
 

@@ -1,6 +1,9 @@
 import ProductList from "../components/ProductList.jsx";
 import { useState, useEffect } from "react";
-import { getProducts, getProductsCategories } from "../services/productService.js";
+import {
+  getProducts,
+  getProductsCategories,
+} from "../services/productService.js";
 import ProductFilters from "../components/ProductFilters.jsx";
 import "../index.css";
 
@@ -16,28 +19,39 @@ function ProductsPage() {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [sortBy, setSortBy] = useState("default");
 
-  const [categories, SetCategories] = useState([])
-
+  const [categories, SetCategories] = useState([]);
 
   useEffect(() => {
     const loadCategories = async () => {
       try {
-      const data = await getProductsCategories();
+        const data = await getProductsCategories();
 
-      SetCategories(data)
+        SetCategories(data);
       } catch {
-        setError("No se pueden cargar las categorias")
+        setError("No se pueden cargar las categorias");
       }
-    }
+    };
     loadCategories();
-  },[]);
+  }, []);
 
   useEffect(() => {
     const loadProducts = async () => {
       try {
-        const field =
-          sortBy === "newest" || sortBy === "oldest" ? "year" : "title";
-        const order = sortBy === "az" || sortBy === "newest" ? "asc" : "desc";
+        let field = "name";
+
+        if (sortBy === "newest" || sortBy === "oldest") {
+          field = "createdAt";
+        }
+
+        if (sortBy === "low" || sortBy === "high") {
+          field = "price";
+        }
+
+        let order = "asc";
+
+        if (sortBy === "high" || sortBy === "za" || sortBy === "oldest") {
+          order = "desc";
+        }
 
         const data = await getProducts(
           page,
@@ -90,10 +104,9 @@ function ProductsPage() {
           <ProductList products={products} />
 
           <div className="pagination">
-            <button onClick={() => setPage(page - 1)} 
-            disabled={page === 1}
-            >
-              {"<<"}</button>
+            <button onClick={() => setPage(page - 1)} disabled={page === 1}>
+              {"<<"}
+            </button>
 
             <span>
               {page} de {totalPages}

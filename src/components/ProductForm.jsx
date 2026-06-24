@@ -3,7 +3,7 @@ import { categories } from "../data/categories";
 
 
 const initialForm = {
-  title: "",
+  name: "",
   description: "",
   price: "",
   category: "",

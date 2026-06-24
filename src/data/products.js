@@ -75,7 +75,7 @@ export const products = [
     description: "Cuadro de aluminio, frenos hidráulicos y 24 velocidades.",
     price: 350,
     category: "Deporte y ocio",
-    image: "https://picsum.photos/300/200?random=8",
+    image: "/images/product/Bicicleta.jpg",
     featured: false,
     createdAt: "2024-01-30",
   },

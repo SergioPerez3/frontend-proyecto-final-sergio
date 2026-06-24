@@ -381,7 +381,7 @@ img {
 .detail-images img {
   width: 100%;
   max-height: 450px;
-  object-fit: cover;
+  object-fit: scale-down;
   display: block;
   border-radius: 10px;
   object-position: center;
@@ -655,6 +655,101 @@ img {
   color: #c5a100;
 }
 
+
+/* ----------ABOUT US PAGE---------------- */ 
+
+.about {
+  padding: 4rem 1.5rem;
+  display: flex;
+  justify-content: center;
+  background: #050505; 
+  color: #f5f5f5;
+}
+
+
+.about-container {
+  max-width: 900px;
+  width: 100%;
+}
+
+
+.about-title {
+  font-size: 2.4rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #d4af37; 
+}
+
+.about-subtitle {
+  font-size: 1.6rem;
+  margin: 2.5rem 0 1rem;
+  color: #d4af37; 
+}
+
+
+.about-text {
+  line-height: 1.7;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #e0e0e0;
+}
+
+.about-text strong {
+  color: #ffd700;
+}
+
+
+.about-list {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 2rem;
+  color: #e0e0e0;
+}
+
+.about-list li {
+  margin-bottom: 0.5rem;
+}
+
+/* ----------CONTACT US --------- */
+
+.contact {
+  padding: 4rem 1.5rem;
+  background: #050505;
+  color: #e0e0e0;
+  display: flex;
+  justify-content: center;
+}
+
+
+.contact > div {
+  max-width: 800px;
+  width: 100%;
+}
+
+
+.contact h1 {
+  font-size: 2.4rem;
+  margin-bottom: 1.2rem;
+  text-align: center;
+  color: #d4af37; 
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+
+.contact p {
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 0.8rem;
+}
+
+
+.contact strong {
+  color: #ffd700; 
+}
+
 /* --------------Carousel------------ */
 .carousel-container {
   display: flex;
@@ -899,7 +994,47 @@ img {
 
 
 
+/* paginación  */
 
+
+.pagination {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  font-size: 16px;
+  color: #e5e5e5;
+}
+
+
+.pagination button {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #e5e5e5;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s ease;
+  font-size: 14px;
+}
+
+.pagination button:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+
+.pagination button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+
+.pagination span {
+  font-weight: 500;
+  color: #c5a100; 
+}
 
 
 
