@@ -30,15 +30,15 @@ function Home() {
         );
         setProductsModa(data.products);
 
-        // const dataSport = await getProducts(
-        //   1,
-        //   5,
-        //   "",
-        //   "title",
-        //   "asc",
-        //   "Moda y accesorios",
-        // )
-        // setProductsSport(dataSport.products);
+        const dataSport = await getProducts(
+          1,
+          5,
+          "",
+          "title",
+          "asc",
+          "Moda y accesorios",
+        )
+        setProductsSport(dataSport.products);
 
         const dataFeatured = await getProductsFeatured();
         setProductsFeatured(dataFeatured.products);

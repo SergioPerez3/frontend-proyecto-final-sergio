@@ -613,6 +613,15 @@ img {
 }
 
 
+.dashboard-text {
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+}
+
+.gold {
+  color: gold;
+  font-weight: bold;
+}
 
 
 
