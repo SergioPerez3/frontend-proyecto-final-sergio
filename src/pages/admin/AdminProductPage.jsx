@@ -23,7 +23,7 @@ function AdminProductPage() {
   useEffect(() => {
     const loadProducts = async () => {
       try {
-        const data = await getProducts(1, 22);
+        const data = await getProducts(1, 24);
         setProducts(data.products);
       } catch {
         setError("No se puede cargar el producto");

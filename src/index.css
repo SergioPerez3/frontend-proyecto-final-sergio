@@ -7,7 +7,6 @@
 body {
   margin: 0;
   font-family: "cinzel", "Cinzel Regular", "Cinzel Decorative", serif;
-  
 
   background:
     linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)),
@@ -322,9 +321,9 @@ img {
 }
 
 .fav-btn {
-  background: rgba(128, 128, 128, 0.15); 
+  background: rgba(128, 128, 128, 0.15);
   border: 1px solid rgba(128, 128, 128, 0.4);
-  color: #888; 
+  color: #888;
   padding: 8px 14px;
   border-radius: 8px;
   cursor: pointer;
@@ -888,7 +887,6 @@ a {
   display: block;
   margin: 10px auto;
 }
-
 
 /* Modal */
 

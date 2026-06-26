@@ -3,15 +3,13 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 function MainLayout() {
-    return ( 
+  return (
     <>
-    <Header />
-    <Outlet />
-    <Footer />
+      <Header />
+      <Outlet />
+      <Footer />
     </>
-);
+  );
 }
-
-
 
 export default MainLayout;

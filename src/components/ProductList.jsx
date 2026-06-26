@@ -10,4 +10,4 @@ function ProductList({ products }) {
   );
 }
 
-export default ProductList
+export default ProductList;

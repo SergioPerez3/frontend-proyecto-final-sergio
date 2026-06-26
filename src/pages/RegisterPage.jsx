@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { register } from "../services/authService";
 
-
 const initialForm = {
   name: "",
   email: "",
@@ -9,16 +8,13 @@ const initialForm = {
   password_confirmation: "",
 };
 
-
-
 function RegisterPage() {
   const [form, setForm] = useState(initialForm);
   const [message, setMessage] = useState("");
   const [error, setError] = useState(null);
 
   const handleChange = (event) => {
-    const { name, value } =
-      event.target;
+    const { name, value } = event.target;
 
     setForm({
       ...form,
@@ -32,7 +28,6 @@ function RegisterPage() {
       setError("");
       setMessage("");
 
-
       if (form.password != form.password_confirmation) {
         setError("Las contraseñas no coinciden");
         return;
@@ -42,11 +37,11 @@ function RegisterPage() {
         name: form.name.trim(),
         email: form.email.trim(),
         password: form.password,
-      }
+      };
 
       const data = await register(userData);
 
-      setMessage(data.message || "Usuario registrado exitósamente")
+      setMessage(data.message || "Usuario registrado exitósamente");
     } catch (error) {
       setError(error.message);
     }
@@ -56,13 +51,12 @@ function RegisterPage() {
     <main>
       <section className="auth-section">
         <div className="container">
-        <form className="auth-form" onSubmit={handleSubmit}>
-          <h1>Crear cuenta</h1>
+          <form className="auth-form" onSubmit={handleSubmit}>
+            <h1>Crear cuenta</h1>
 
-          {error && <p className="auth-error">{error}</p>}
-          {message && <p className="auth-message">{message}</p>}
+            {error && <p className="auth-error">{error}</p>}
+            {message && <p className="auth-message">{message}</p>}
 
-          
             <div className="form-group">
               <label htmlFor="name">Nombre: </label>
               <input

@@ -38,25 +38,24 @@ describe("ProductForm", () => {
       target: { value: "130" },
     });
 
-     fireEvent.click(screen.getByLabelText("Foto del producto:"), {
+    fireEvent.click(screen.getByLabelText("Foto del producto:"), {
       target: { value: "https://picsum.photos/300/200?random=1" },
     });
 
     expect(screen.getByDisplayValue("Bolso")).toBeInTheDocument();
   });
 
-
   test("Esperar que muestre los datos de la película al editarla", () => {
     const product = {
-    id: 1,
-    name: "Bolso Gucci",
-    description: "Bolso de cuero auténtico con detalles metálicos.",
-    price: 450,
-    category: "Moda y accesorios",
-    image: "https://picsum.photos/300/200?random=1",
-    featured: false,
-  };
-  render(
+      id: 1,
+      name: "Bolso Gucci",
+      description: "Bolso de cuero auténtico con detalles metálicos.",
+      price: 450,
+      category: "Moda y accesorios",
+      image: "https://picsum.photos/300/200?random=1",
+      featured: false,
+    };
+    render(
       <ProductForm
         product={product}
         onAddProduct={() => {}}
@@ -67,6 +66,10 @@ describe("ProductForm", () => {
 
     expect(screen.getByText("Editar producto")).toBeInTheDocument();
     expect(screen.getByDisplayValue("Bolso Gucci")).toBeInTheDocument();
-    expect(screen.getByDisplayValue("Bolso de cuero auténtico con detalles metálicos.")).toBeInTheDocument();
-  })
+    expect(
+      screen.getByDisplayValue(
+        "Bolso de cuero auténtico con detalles metálicos.",
+      ),
+    ).toBeInTheDocument();
+  });
 });

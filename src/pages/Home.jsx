@@ -8,14 +8,13 @@ import { Link } from "react-router-dom";
 import "../index.css";
 
 function Home() {
-  // const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   const [productsModa, setProductsModa] = useState([]);
   const [productsSport, setProductsSport] = useState([]);
   const [productsFeatured, setProductsFeatured] = useState([]);
-  const [newProducts, setNewProducts] = useState([])
+  const [newProducts, setNewProducts] = useState([]);
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -37,16 +36,20 @@ function Home() {
           "title",
           "asc",
           "Deporte y ocio",
-        )
+        );
         setProductsSport(dataSport.products);
 
         const dataFeatured = await getProductsFeatured();
         setProductsFeatured(dataFeatured.products);
 
-        const dataNewProducts = await getProducts(1, 5, "", "createdAt", "desc")
-        setNewProducts(dataNewProducts.products)
-
-        
+        const dataNewProducts = await getProducts(
+          1,
+          5,
+          "",
+          "createdAt",
+          "desc",
+        );
+        setNewProducts(dataNewProducts.products);
       } catch {
         setError("No se pueden cargar los productos");
       } finally {
@@ -55,7 +58,6 @@ function Home() {
     };
     loadProducts();
   }, []);
-
 
   if (loading) {
     return <p className="empty-message">Cargando productos...</p>;

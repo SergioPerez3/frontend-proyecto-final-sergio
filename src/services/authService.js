@@ -1,15 +1,12 @@
 const API_URL = `${import.meta.env.VITE_API_URL}/auth`;
 
-
 const handleResponse = async (response) => {
   const data = await response.json();
   if (!response.ok) {
     throw new Error(data.message || "Error en la solicitud");
   }
   return data;
-}
-
-
+};
 
 export const register = async (userData) => {
   const response = await fetch(`${API_URL}/register`, {
@@ -21,7 +18,6 @@ export const register = async (userData) => {
   return handleResponse(response);
 };
 
-
 export const login = async (userData) => {
   const response = await fetch(`${API_URL}/login`, {
     method: "POST",
@@ -31,6 +27,3 @@ export const login = async (userData) => {
 
   return handleResponse(response);
 };
-
-
-
