@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { getProductById } from "../services/productService";
 import { useEffect, useState } from "react";
+import FavoriteButton from "../components/FavoriteButton";
 
 function ProductDetailPage() {
   const { id } = useParams();
@@ -78,8 +79,8 @@ function ProductDetailPage() {
             {product.seller}
           </p> */}
 
-          <div className="detail-buttons">
-            <button className="fav-btn">❤ Favorito</button>
+          <div className="detail-buttons" onClick={(e) => e.stopPropagation()}>
+            <FavoriteButton productId={product._id} />
             <button className="add-btn">ADD TO CART</button>
           </div>
           <div className="detail-buttons">

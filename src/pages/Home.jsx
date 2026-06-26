@@ -36,7 +36,7 @@ function Home() {
           "",
           "title",
           "asc",
-          "Moda y accesorios",
+          "Deporte y ocio",
         )
         setProductsSport(dataSport.products);
 
@@ -56,35 +56,6 @@ function Home() {
     loadProducts();
   }, []);
 
-
-
-
-  // useEffect(() => {
-  //   const loadProducts = async () => {
-  //     try {
-  //       const data = await getProducts();
-  //       setProducts(data.products);
-  //     } catch {
-  //       setError("No se puede cargar el producto");
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-  //   loadProducts();
-  // }, []);
-
-
-
-
-  // const modaProducts = products.filter((product) =>
-  //   product.category.startsWith("Moda"),
-  // );
-  // const sportProducts = products.filter((product) =>
-  //   product.category.startsWith("Deporte"),
-  // );
-  // const featuredProducts = products.filter((product) => product.featured);
-
-  // const newProducts = products.slice(0, 3); // 3 primeros
 
   if (loading) {
     return <p className="empty-message">Cargando productos...</p>;
@@ -143,7 +114,7 @@ function Home() {
 
       <section className="featured-section">
         <div className="container">
-          <h2> Los mas destacados esta semana : </h2>
+          <h2> ▼ Los más destacados esta semana ▼ </h2>
 
           <ProductCarousel products={productsFeatured} />
         </div>
@@ -151,7 +122,7 @@ function Home() {
 
       <section className="featured-section">
         <div className="container">
-          <h2> Los mas nuevos :</h2>
+          <h2>▼ Los más nuevos ▼</h2>
 
           <ProductCarousel products={newProducts} />
         </div>
@@ -159,7 +130,7 @@ function Home() {
 
       <section className="featured-section">
         <div className="container">
-          <h2> Únete a la moda :</h2>
+          <h2>▼ Únete a la moda ▼</h2>
 
           <ProductCarousel products={productsModa} visible={3} />
         </div>
@@ -167,7 +138,7 @@ function Home() {
 
       <section className="featured-section">
         <div className="container">
-          <h2> Haz deporte este verano :</h2>
+          <h2>▼ Haz deporte este verano ▼</h2>
 
           <ProductCarousel products={productsSport} visible={3} />
         </div>

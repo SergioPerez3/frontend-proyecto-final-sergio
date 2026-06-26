@@ -33,25 +33,6 @@ function ProductCarousel({ products, visible = 3 }) {
       </button>
     </div>
   );
-
-//   return (
-//     <section>
-//       <div>
-//         <div>
-//           <h2>Contenido destacado</h2>
-//           <span>Desliza para ver mas</span>
-//         </div>
-
-//         <div>
-//           {products.map((product) => (
-//             <div>
-//               <ProductCard product={product} />
-//             </div>
-//           ))}
-//         </div>
-//       </div>
-//     </section>
-//   );
 }
 
 export default ProductCarousel;

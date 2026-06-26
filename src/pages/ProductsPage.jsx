@@ -75,11 +75,6 @@ function ProductsPage() {
 
   const hasResults = products.length > 0;
 
-  // const categories = [
-  //   "",
-  //   ...new Set(products.map((product) => product.category)),
-  // ];
-
   if (loading) {
     return <p className="empty-message">Cargando productos...</p>;
   }
@@ -125,12 +120,6 @@ function ProductsPage() {
           No encontramos resultados para "{search}"
         </p>
       )}
-
-      {/* <section className="featured-section">
-        <div className="container">
-          <ProductList products={products} />
-        </div>
-      </section> */}
     </main>
   );
 }

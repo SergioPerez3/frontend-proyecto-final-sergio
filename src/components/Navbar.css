@@ -80,3 +80,45 @@
   background: #c5a1009c;
   color: #ffffff;
 }
+
+
+
+
+@media (max-width: 425px) {
+
+  .navbar {
+    height: 60px;
+    padding: 0 12px;
+    justify-content: space-between;
+  }
+
+ 
+  .navbar-logo img {
+    height: 40px;
+    width: auto;
+  }
+
+ 
+  .navbar-left {
+    gap: 18px;             
+  }
+
+  
+  .navbar-right {
+    gap: 14px;              
+    margin-left: 0;        
+  }
+
+ 
+  .navbar a {
+    font-size: 14px;        
+    font-weight: 500;
+  }
+
+  
+  .btn-login,
+  .btn-logout {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+}

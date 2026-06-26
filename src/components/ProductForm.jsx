@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { categories } from "../data/categories";
-
+import { getProductsCategories } from "../services/productService";
 
 const initialForm = {
   name: "",
@@ -8,14 +7,23 @@ const initialForm = {
   price: "",
   category: "",
   image: "",
-  featured:false,
+  featured: false,
 };
 
 function ProductForm({ onAddProduct, product, onUpdateProduct, isSaving }) {
   const [form, setForm] = useState(initialForm);
-  
+  const [categories, setCategories] = useState([]);
 
   const isEditing = Boolean(product);
+
+  useEffect(() => {
+    const loadCategories = async () => {
+      const data = await getProductsCategories();
+      setCategories(data.categories || data || []);
+    };
+
+    loadCategories();
+  }, []);
 
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
@@ -26,11 +34,9 @@ function ProductForm({ onAddProduct, product, onUpdateProduct, isSaving }) {
     });
   };
 
-
-
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
     if (!form.name.trim()) {
       alert("Ingrese el nombre del producto");
       return;
@@ -41,49 +47,42 @@ function ProductForm({ onAddProduct, product, onUpdateProduct, isSaving }) {
       return;
     }
 
-    if (!form.description.trim()) {
-      alert("Ingrese una descripción");
+    if (!form.category) {
+      alert("Seleccione una categoría");
       return;
     }
-    // if (!form.category) {
-    //   alert("Seleccione una categoría");
-    //   return;
-    // }
 
-    // if (!form.image.trim()) {
-    //   alert("Ingrese una imagen");
-    //   return;
-    // }
+    if (!form.image.trim()) {
+      alert("Ingrese una imagen");
+      return;
+    }
 
     if (!form.price || isNaN(form.price) || Number(form.price) < 0) {
       alert("Ingrese un precio válido");
       return;
     }
 
-  if (isEditing) {
-    await onUpdateProduct(product._id, form)
-  } else {
-    await onAddProduct(form);
-  }
-  
-  setForm(initialForm);
-};
+    if (isEditing) {
+      await onUpdateProduct(product._id, form);
+    } else {
+      await onAddProduct(form);
+    }
 
+    setForm(initialForm);
+  };
 
-
-useEffect(() => {
-  if (product) {
-    setForm({
-      ...initialForm,
-      ...product,
-    });
-  }
-}, [product]);
-
-
+  useEffect(() => {
+    if (product) {
+      setForm({
+        ...initialForm,
+        ...product,
+        image: product.image ? `/images/product/${product.image}` : "",
+      });
+    }
+  }, [product]);
 
   return (
-    <form  className="product-form" onSubmit={handleSubmit}>
+    <form className="product-form" onSubmit={handleSubmit}>
       <h2>{isEditing ? "Editar producto" : "Nuevo producto"}</h2>
 
       <div className="form-group">
@@ -101,7 +100,6 @@ useEffect(() => {
       <div className="form-group">
         <label htmlFor="description">Descripción:</label>
         <textarea
-          type="text"
           placeholder="Escribe una breve descripción"
           id="description"
           name="description"
@@ -120,7 +118,6 @@ useEffect(() => {
           min="0"
           value={form.price}
           onChange={handleChange}
-          
         />
       </div>
 
@@ -134,13 +131,12 @@ useEffect(() => {
         >
           <option value="">Selecciona una categoría</option>
           {categories.map((category) => (
-            <option key={category._id} value={category}>
+            <option key={category} value={category}>
               {category}
             </option>
           ))}
         </select>
       </div>
-
 
       <div className="form-group">
         <label htmlFor="image">Foto del producto:</label>
@@ -156,21 +152,9 @@ useEffect(() => {
 
       {form.image.trim() && (
         <div className="image-preview">
-            <img src={form.image} alt="Vista previa" />
+          <img src={form.image} alt="Vista previa" />
         </div>
       )}
-
-      {/* <div>
-        <label htmlFor="notes">Notas:</label>
-        <textarea
-          type="text"
-          id="notes"
-          name="notes"
-          placeholder="Observaciones del producto"
-          value={form.notes}
-          onChange={handleChange}
-        />
-      </div> */}
 
       <div className="form-group">
         <label htmlFor="featured">Destacado:</label>
@@ -183,18 +167,13 @@ useEffect(() => {
         />
       </div>
 
-      <button disabled={isSaving} className="button movie-form-button" type="submit">
-
-        {/* {isSaving 
-        ? "Guardando..." 
-        : isEditing 
-        ? "Actualizar producto" 
-        : "Agregar producto"} */}
-
+      <button
+        disabled={isSaving}
+        className="button movie-form-button"
+        type="submit"
+      >
         {isSaving ? "Guardando..." : "Guardar producto"}
-        </button>
-
-
+      </button>
     </form>
   );
 }

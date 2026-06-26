@@ -14,7 +14,7 @@ import DashboardPage from "../pages/admin/DaskboardPage";
 import RegisterPage from "../pages/RegisterPage";
 import LoginPage from "../pages/LoginPage";
 import authLoader from "../loaders/authLoader";
-
+import FavoritesPage from "../pages/FavoritesPage";
 
 export const router = createBrowserRouter([
   // RUTA PUBLICA
@@ -35,15 +35,19 @@ export const router = createBrowserRouter([
         element: <ProductDetailPage />,
       },
       {
-        path:"register",
-        element: <RegisterPage />
+        path: "register",
+        element: <RegisterPage />,
       },
       {
         path: "login",
-        element: <LoginPage/>
+        element: <LoginPage />,
       },
 
-      
+      {
+        path: "favorites",
+        element: <FavoritesPage />,
+      },
+
       {
         path: "about",
         element: <AboutUs />,
@@ -56,7 +60,6 @@ export const router = createBrowserRouter([
         path: "*",
         element: <NotfoundPage />,
       },
-
     ],
   },
 
@@ -76,7 +79,6 @@ export const router = createBrowserRouter([
         loader: authLoader,
         element: <AdminProductPage />,
       },
-    
     ],
   },
 ]);

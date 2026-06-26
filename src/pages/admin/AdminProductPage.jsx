@@ -23,7 +23,7 @@ function AdminProductPage() {
   useEffect(() => {
     const loadProducts = async () => {
       try {
-        const data = await getProducts();
+        const data = await getProducts(1, 22);
         setProducts(data.products);
       } catch {
         setError("No se puede cargar el producto");
@@ -61,7 +61,7 @@ function AdminProductPage() {
       const filteredProducts = products.filter((product) => product._id != id);
 
       setProducts(filteredProducts);
-      
+
       setProductToDelete(null);
 
       setMessage("Producto eliminado correctamente");
@@ -92,7 +92,7 @@ function AdminProductPage() {
       setIsSaving(false);
     }
   };
-  
+
   useEffect(() => {
     if (!message) {
       return;
@@ -136,7 +136,6 @@ function AdminProductPage() {
   if (error) {
     <p className="empty-message">{error}</p>;
   }
-
   return (
     <section className="catalog-section">
       {message && (
@@ -147,8 +146,8 @@ function AdminProductPage() {
 
       <div className="admin-page-header">
         <div ref={formRef}>
-          <h2>Gestión de productos</h2>
-          <p>Agrega, edita o elimina tus productos fácilmente.</p>
+          <h1>Gestión de productos</h1>
+          <h2>Agrega, edita o elimina tus productos fácilmente.</h2>
         </div>
 
         <button
@@ -229,7 +228,6 @@ function AdminProductPage() {
                 type="button"
                 onClick={() => handleDeleteProduct(productToDelete._id)}
               >
-               
                 {isSaving ? "Eliminando..." : "Eliminar"}
               </button>
             </div>

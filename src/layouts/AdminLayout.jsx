@@ -14,12 +14,12 @@ function AdminLayout() {
            </div>
             <nav>
                 <button>
-                <Link to="/admin/products">Ver mis productos</Link>
+                <Link to="/admin/products">Mis productos</Link>
                 </button>
                 <button>
                 <Link to="/products">Ver sitio Web</Link>
                 </button>
-                <Link to= "/admin">↩</Link>
+                <Link to= "/admin">↩ Dashboard</Link>
             </nav>
             <Outlet/> 
             </div>
