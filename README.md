@@ -5,7 +5,7 @@ Incluye autenticación, favoritos, panel de administración y una interfaz limpi
 
 ## Descripcion
 
-# Aplicación para visualizar, buscar y administrar productos consumiendo una API REST creada en Node.js.
+### Aplicación para visualizar, buscar y administrar productos consumiendo una API REST creada en Node.js.
 
 El usuario puede:
 
@@ -31,59 +31,59 @@ El frontend está construido con React + Vite, utiliza Context API para la gesti
 
 ## Caractéristicas
 
--Listado de productos
+- Listado de productos
 
--Búsqueda en tiempo real
+- Búsqueda en tiempo real
 
--Filtros por categoría
+- Filtros por categoría
 
--Ordenamiento por precio, nombre o categoría
+- Ordenamiento por precio, nombre o categoría
 
--Paginación
+- Paginación
 
--Vista de detalle del producto
+- Vista de detalle del producto
 
--Productos destacados
+- Productos destacados
 
--Gestión de favoritos por usuario
+- Gestión de favoritos por usuario
 
--Panel de administración
+- Panel de administración
 
--Crear productos
+- Crear productos
 
--Editar productos
+- Editar productos
 
--Eliminar productos
+- Eliminar productos
 
--Registro de usuarios
+- Registro de usuarios
 
 -Inicio de sesión con JWT
 
--Rutas protegidas mediante autenticación
+- Rutas protegidas mediante autenticación
 
--Context global para Auth y Favoritos
+- Context global para Auth y Favoritos
 
--Diseño responsive
+- Diseño responsive
 
--Testing básico con Vitest
+- Testing básico con Vitest
 
 ## Tecnologías utilizadas
 
--React
+- React
 
--Vite
+- Vite
 
--React Router DOM
+- React Router DOM
 
--Context API
+- Context API
 
--Tailwind CSS (o tu sistema de estilos)
+- Tailwind CSS (o tu sistema de estilos)
 
--Fetch API / Axios (según lo que uses)
+- Fetch API / Axios (según lo que uses)
 
--Vitest
+- Vitest
 
--Testing Library
+- Testing Library
 
 ## Instalación
 
@@ -253,7 +253,7 @@ Las rutas protegidas requieren autenticación para acceder al panel de administr
 Frontend desplegado en:
 
 ```txt
-https://tu-proyecto.netlify.app
+https://tu-api.onrender.com
 ```
 
 Backend desplegado en:

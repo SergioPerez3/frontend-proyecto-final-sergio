@@ -13,22 +13,22 @@ function ProductDetailPage() {
   useEffect(() => {
     const loadProduct = async () => {
       try {
-        const data = await getProductById(id)
-        setProduct(data)
+        const data = await getProductById(id);
+        setProduct(data);
       } catch {
-        setError(error.message)
+        setError(error.message);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
     };
     loadProduct();
   }, [id]);
 
   if (loading) {
-    return <p className="empty-message">Cargando productos...</p>
+    return <p className="empty-message">Cargando productos...</p>;
   }
-  if(error) {
-    <p className="empty-message">{error}</p>
+  if (error) {
+    <p className="empty-message">{error}</p>;
   }
 
   if (error || !product) {
@@ -36,7 +36,9 @@ function ProductDetailPage() {
       <main>
         <section className="catalog-section">
           <div className="container">
-            <h1 className="detail-price">{error || "Producto no encontrado"}</h1>
+            <h1 className="detail-price">
+              {error || "Producto no encontrado"}
+            </h1>
             <Link to="/" className="detail-title">
               Pulse para volver a la página principal
             </Link>
@@ -52,7 +54,11 @@ function ProductDetailPage() {
         <div className="detail-images">
           {product.images && product.images.length > 0 ? (
             product.images.map((img, index) => (
-              <img key={index} src={`/images/product/${img}`} alt={product.name} />
+              <img
+                key={index}
+                src={`/images/product/${img}`}
+                alt={product.name}
+              />
             ))
           ) : (
             <img src={`/images/product/${product.image}`} alt={product.name} />
@@ -68,16 +74,6 @@ function ProductDetailPage() {
             <strong>Descripción: </strong>
             {product.description}
           </p>
-
-          {/* <p className="detail-notes">
-            <strong>Observaciones: </strong>
-            {product.notes}
-          </p>
-
-          <p className="detail-description">
-            <strong>Vendedor: </strong>
-            {product.seller}
-          </p> */}
 
           <div className="detail-buttons" onClick={(e) => e.stopPropagation()}>
             <FavoriteButton productId={product._id} />

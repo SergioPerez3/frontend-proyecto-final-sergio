@@ -5,7 +5,6 @@ import Navbar from "../components/Navbar";
 import { AuthContext } from "../context/authContext";
 
 describe("Navbar", () => {
-
   test("espero que muestre el register y el login", () => {
     render(
       <MemoryRouter>

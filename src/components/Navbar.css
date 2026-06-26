@@ -3,26 +3,24 @@
 .navbar {
   position: fixed;
   top: 0;
-  left: 0;             
-  width: 100%;          
+  left: 0;
+  width: 100%;
   height: 65px;
   background: #0d0d0d;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;      
+  padding: 0 20px;
   border-bottom: 1px solid #c5a100;
   z-index: 1000;
-  box-sizing: border-box; 
+  box-sizing: border-box;
   background: rgba(0, 0, 0, 0.773);
-  backdrop-filter: blur(6px);     
+  backdrop-filter: blur(6px);
 }
-
-
 
 .navbar-left {
   display: flex;
-  align-items:center;
+  align-items: center;
   gap: 70px;
 }
 
@@ -30,7 +28,7 @@
   display: flex;
   align-items: center;
   gap: 30px;
-  margin-left: 140px; 
+  margin-left: 140px;
 }
 
 .navbar a {
@@ -44,9 +42,7 @@
 .navbar a:hover {
   color: #c5a100;
   font-weight: 666;
-  
 }
-
 
 .btn-login {
   padding: 8px 14px;
@@ -60,12 +56,11 @@
 }
 
 .navbar-logo img {
-  height: 50px;  
-  width: 100px;    
-  max-width: 100%; 
+  height: 50px;
+  width: 100px;
+  max-width: 100%;
   object-fit: contain;
 }
-
 
 .btn-logout {
   padding: 8px 14px;
@@ -81,41 +76,32 @@
   color: #ffffff;
 }
 
-
-
-
 @media (max-width: 425px) {
-
   .navbar {
     height: 60px;
     padding: 0 12px;
     justify-content: space-between;
   }
 
- 
   .navbar-logo img {
     height: 40px;
     width: auto;
   }
 
- 
   .navbar-left {
-    gap: 18px;             
+    gap: 18px;
   }
 
-  
   .navbar-right {
-    gap: 14px;              
-    margin-left: 0;        
+    gap: 14px;
+    margin-left: 0;
   }
 
- 
   .navbar a {
-    font-size: 14px;        
+    font-size: 14px;
     font-weight: 500;
   }
 
-  
   .btn-login,
   .btn-logout {
     padding: 6px 10px;

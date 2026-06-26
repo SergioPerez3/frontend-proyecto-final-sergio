@@ -8,7 +8,6 @@ const ProductCard = ({ product }) => {
   <img src={`/images/product/${product.image}`} alt={product.name} />
 
   <h3>{product.name}</h3>
-  <p>{product.description}</p>
   <span className="price">{product.price} €</span>
 
   <div className="card-buttons">

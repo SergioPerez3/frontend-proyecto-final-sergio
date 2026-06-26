@@ -8,7 +8,6 @@ const initialForm = {
   password: "",
 };
 
-
 function LoginPage() {
   const context = useAuth();
   const navigate = useNavigate();
@@ -19,8 +18,7 @@ function LoginPage() {
   const [error, setError] = useState(null);
 
   const handleChange = (event) => {
-    const { name, value } =
-      event.target;
+    const { name, value } = event.target;
 
     setForm({
       ...form,
@@ -37,17 +35,17 @@ function LoginPage() {
       const userData = {
         email: form.email.trim(),
         password: form.password,
-      }
+      };
 
       const data = await login(userData);
-      
+
       context.login(data);
 
-      setMessage(data.message || "Sesión iniciada correctamente")
+      setMessage(data.message || "Sesión iniciada correctamente");
 
       setForm(initialForm);
 
-      navigate("/admin/products")
+      navigate("/admin/products");
     } catch (error) {
       setError(error.message);
     }
@@ -58,13 +56,10 @@ function LoginPage() {
       <section className="auth-section">
         <div className="container">
           <form className="auth-form" onSubmit={handleSubmit}>
-          <h1>Iniciar sesión</h1>
+            <h1>Iniciar sesión</h1>
 
-          {error && <p className="auth-error">{error}</p>}
-          {message && <p className="auth-message">{message}</p>}
-
-          
-           
+            {error && <p className="auth-error">{error}</p>}
+            {message && <p className="auth-message">{message}</p>}
 
             <div className="form-group">
               <label htmlFor="email">Correo: </label>
@@ -88,7 +83,7 @@ function LoginPage() {
                 onChange={handleChange}
               />
             </div>
-    
+
             <button className="add-btn" type="submit">
               Iniciar sesión
             </button>
